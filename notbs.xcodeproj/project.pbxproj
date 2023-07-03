@@ -14,6 +14,11 @@
 		410F17B72A4CCD4B00AF965C /* notbsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 410F17B62A4CCD4B00AF965C /* notbsTests.swift */; };
 		410F17C12A4CCD4B00AF965C /* notbsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 410F17C02A4CCD4B00AF965C /* notbsUITests.swift */; };
 		410F17C32A4CCD4B00AF965C /* notbsUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 410F17C22A4CCD4B00AF965C /* notbsUITestsLaunchTests.swift */; };
+		410F17D02A4CCEB000AF965C /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 410F17CF2A4CCEB000AF965C /* Launch Screen.storyboard */; };
+		410F17D62A4CD63F00AF965C /* HomeScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 410F17D52A4CD63F00AF965C /* HomeScreenView.swift */; };
+		410F17D82A4CD66300AF965C /* PlusScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 410F17D72A4CD66300AF965C /* PlusScreenView.swift */; };
+		410F17DA2A4CD68400AF965C /* HumanScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 410F17D92A4CD68400AF965C /* HumanScreenView.swift */; };
+		410F17DC2A4E7CA500AF965C /* LedgerScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 410F17DB2A4E7CA500AF965C /* LedgerScreenView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +49,11 @@
 		410F17BC2A4CCD4B00AF965C /* notbsUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = notbsUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		410F17C02A4CCD4B00AF965C /* notbsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = notbsUITests.swift; sourceTree = "<group>"; };
 		410F17C22A4CCD4B00AF965C /* notbsUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = notbsUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		410F17CF2A4CCEB000AF965C /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
+		410F17D52A4CD63F00AF965C /* HomeScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreenView.swift; sourceTree = "<group>"; };
+		410F17D72A4CD66300AF965C /* PlusScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlusScreenView.swift; sourceTree = "<group>"; };
+		410F17D92A4CD68400AF965C /* HumanScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HumanScreenView.swift; sourceTree = "<group>"; };
+		410F17DB2A4E7CA500AF965C /* LedgerScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LedgerScreenView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,6 +108,11 @@
 				410F17A72A4CCD4900AF965C /* ContentView.swift */,
 				410F17A92A4CCD4A00AF965C /* Assets.xcassets */,
 				410F17AB2A4CCD4A00AF965C /* Preview Content */,
+				410F17CF2A4CCEB000AF965C /* Launch Screen.storyboard */,
+				410F17D52A4CD63F00AF965C /* HomeScreenView.swift */,
+				410F17D72A4CD66300AF965C /* PlusScreenView.swift */,
+				410F17D92A4CD68400AF965C /* HumanScreenView.swift */,
+				410F17DB2A4E7CA500AF965C /* LedgerScreenView.swift */,
 			);
 			path = notbs;
 			sourceTree = "<group>";
@@ -231,6 +246,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				410F17D02A4CCEB000AF965C /* Launch Screen.storyboard in Resources */,
 				410F17AD2A4CCD4A00AF965C /* Preview Assets.xcassets in Resources */,
 				410F17AA2A4CCD4A00AF965C /* Assets.xcassets in Resources */,
 			);
@@ -258,7 +274,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				410F17A82A4CCD4900AF965C /* ContentView.swift in Sources */,
+				410F17DA2A4CD68400AF965C /* HumanScreenView.swift in Sources */,
 				410F17A62A4CCD4900AF965C /* notbsApp.swift in Sources */,
+				410F17DC2A4E7CA500AF965C /* LedgerScreenView.swift in Sources */,
+				410F17D82A4CD66300AF965C /* PlusScreenView.swift in Sources */,
+				410F17D62A4CD63F00AF965C /* HomeScreenView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

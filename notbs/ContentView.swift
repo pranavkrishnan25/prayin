@@ -1,21 +1,61 @@
-//
-//  ContentView.swift
-//  notbs
-//
-//  Created by Pranav Krishnan on 6/28/23.
-//
+
 
 import SwiftUI
 
 struct ContentView: View {
+    @State private var selectedTab: Tab = .home
+
     var body: some View {
         VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundColor(.accentColor)
-            Text("Hello, world!")
+            Text("")
+                .font(.title)
+                .fontWeight(.bold)
+                .padding()
+
+            Group {
+                if selectedTab == .home {
+                    HomeScreenView()
+                } else if selectedTab == .plus {
+                    PlusScreenView()
+                } else if selectedTab == .human {
+                    HumanScreenView()
+                }
+            }
+            
+            Spacer(minLength: 0)
+
+            HStack(spacing: 60) {
+                Button(action: {
+                    selectedTab = .home
+                }) {
+                    Image(systemName: selectedTab == .home ? "house.fill" : "house")
+                        .font(.system(size: 30))
+                }
+
+                Button(action: {
+                    selectedTab = .plus
+                }) {
+                    Image(systemName: selectedTab == .plus ? "plus.circle.fill" : "plus.circle")
+                        .font(.system(size: 30))
+                }
+
+                Button(action: {
+                    selectedTab = .human
+                }) {
+                    Image(systemName: selectedTab == .human ? "person.fill" : "person")
+                        .font(.system(size: 30))
+                }
+            }
+            .padding(.horizontal, 40)
+            .padding(.bottom, 20)
         }
-        .padding()
+        .edgesIgnoringSafeArea([.top, .bottom])
+    }
+
+    enum Tab {
+        case home
+        case plus
+        case human
     }
 }
 
@@ -24,3 +64,5 @@ struct ContentView_Previews: PreviewProvider {
         ContentView()
     }
 }
+
+

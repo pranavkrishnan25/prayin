@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct HomeScreenView: View {
-    let screens: [String] = ["Screen 1", "Screen 2", "Screen 3"] // Add your screen names here
+    let screens: [String] = ["Me", "Family", "Friends"] // Add your screen names here
         
     @State private var currentIndex: Int = 0
     
@@ -12,11 +12,31 @@ struct HomeScreenView: View {
 //                .resizable()
 //                .scaledToFit()
 //                .aspectRatio(contentMode: .fit)
+            
+            HStack(spacing: 20) {
+                            ForEach(screens.indices, id: \.self) { index in
+                                Button(action: {
+                                    currentIndex = index
+                                }) {
+                                    Text(screens[index])
+                                        .font(.title)
+                                        .fontWeight(.bold)
+                                        .foregroundColor(currentIndex == index ? .blue : .gray)
+                                }
+                            }
+                        }
+                        .padding(.top, 20)
+//            HStack {
+//                            ForEach(screens.indices, id: \.self) { index in
+//                                Image(systemName: index == currentIndex ? "largecircle.fill.circle" : "circle")
+//                                    .foregroundColor(.blue)
+//                            }
+//                        }
+//                        .font(.title)
+//                        .padding(.top, 20)
             TabView(selection: $currentIndex) {
-                            ForEach(0..<screens.count, id: \.self) { index in
-                                Text(screens[index])
-                                    .font(.title)
-                                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+                            ForEach(screens.indices, id: \.self) { index in
+                                createScreenView(for: screens[index])
                                     .tag(index)
                             }
                         }
@@ -26,11 +46,11 @@ struct HomeScreenView: View {
     @ViewBuilder
         func createScreenView(for screenName: String) -> some View {
             switch screenName {
-            case "Screen 1":
+            case "Me":
                 Screen1View()
-            case "Screen 2":
+            case "Family":
                 Screen2View()
-            case "Screen 3":
+            case "Friends":
                 Screen3View()
             default:
                 EmptyView()
@@ -38,36 +58,67 @@ struct HomeScreenView: View {
         }
 }
 
-
 struct Screen1View: View {
     var body: some View {
-        Text("Screen 1")
-            .font(.title)
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
+        ScrollView {
+            LazyVGrid(columns: [GridItem(.flexible())]) {
+                ForEach(0..<10) { index in
+                    TileView(title: "Tile \(index + 1)", color: Color.blue)
+                        .frame(maxWidth: .infinity)
+                }
+            }
+            .padding()
+        }
     }
 }
 
 struct Screen2View: View {
     var body: some View {
-        Text("Screen 2")
-            .font(.title)
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
+        ScrollView {
+            LazyVGrid(columns: [GridItem(.flexible())], spacing: 10) {
+                ForEach(0..<15) { index in
+                    TileView(title: "Tile \(index + 1)", color: Color.green)
+                        .frame(maxWidth: .infinity)
+                }
+            }
+            .padding()
+        }
     }
 }
 
 struct Screen3View: View {
     var body: some View {
-        Text("Screen 3")
-            .font(.title)
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
+        ScrollView {
+            LazyVGrid(columns: [GridItem(.flexible())], spacing: 10) {
+                ForEach(0..<20) { index in
+                    TileView(title: "Tile \(index + 1)", color: Color.orange)
+                        .frame(maxWidth: .infinity)
+                }
+            }
+            .padding()
+        }
     }
 }
 
-
+struct TileView: View {
+    let title: String
+    let color: Color
+    
+    var body: some View {
+        HStack {
+            Text(title)
+                .font(.title)
+                .foregroundColor(.white)
+                .padding()
+                .frame(maxWidth: .infinity) // Occupy the entire horizontal space
+        }
+        .background(color)
+        .cornerRadius(10)
+    }
+}
 
 struct HomeScreenView_Previews: PreviewProvider {
     static var previews: some View {
         HomeScreenView()
     }
 }
-

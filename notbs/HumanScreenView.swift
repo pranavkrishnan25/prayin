@@ -1,111 +1,303 @@
+//
+//import SwiftUI
+//
+////struct HumanScreenView: View {
+////    @State private var selectedGraph = 0
+////
+////    var body: some View {
+////        NavigationView {
+////            VStack {
+////                HStack {
+////                    VStack(alignment: .leading) {
+////                        Text("Pranav Krishnan")
+////                            .font(.title)
+////                            .foregroundColor(.black)
+////                        Text("7/11/23")
+////                            .font(.subheadline)
+////                            .foregroundColor(.gray)
+////                        Text("3:30 PM")
+////                            .font(.subheadline)
+////                            .foregroundColor(.gray)
+////                    }
+////                    .padding()
+////
+////                    NavigationLink(destination: SettingsView()) {
+////                        Image(systemName: "gearshape.fill")
+////                            .foregroundColor(.blue)
+////                            .font(.title)
+////                            .padding()
+////                    }
+////                }
+////                .background(RoundedRectangle(cornerRadius: 20)
+////                                .fill(Color.white.opacity(0.7)))
+////                .padding()
+////
+////                HStack {
+////                    NavigationLink(destination: PersonalLedgerView()) {
+////                        VStack {
+////                            Image(systemName: "book.fill")
+////                                .font(.largeTitle)
+////                                .foregroundColor(.blue)
+////                            Text("Personal Ledger")
+////                                .foregroundColor(.black)
+////                        }
+////                        .frame(minWidth: 0, maxWidth: .infinity)
+////                        .padding()
+////                        .background(RoundedRectangle(cornerRadius: 20).fill(Color.gray.opacity(0.2)))
+////                    }
+////
+////                    NavigationLink(destination: MedicalVisitsView()) {
+////                        VStack {
+////                            Image(systemName: "heart.text.square")
+////                                .font(.largeTitle)
+////                                .foregroundColor(.blue)
+////                            Text("Medical Visits")
+////                                .foregroundColor(.black)
+////                        }
+////                        .frame(minWidth: 0, maxWidth: .infinity)
+////                        .padding()
+////                        .background(RoundedRectangle(cornerRadius: 20).fill(Color.gray.opacity(0.2)))
+////                    }
+////
+////                    NavigationLink(destination: MedicineCabinetView()) {
+////                        VStack {
+////                            Image(systemName: "pills")
+////                                .font(.largeTitle)
+////                                .foregroundColor(.blue)
+////                            Text("Medicine Cabinet")
+////                                .foregroundColor(.black)
+////                        }
+////                        .frame(minWidth: 0, maxWidth: .infinity)
+////                        .padding()
+////                        .background(RoundedRectangle(cornerRadius: 20).fill(Color.gray.opacity(0.2)))
+////                    }
+////                }
+////                .padding()
+////
+////                Text("Activity")
+////                    .font(.title2)
+////                    .fontWeight(.bold)
+////                    .padding(.top, 10)
+////
+////                Picker("", selection: $selectedGraph) {
+////                    Text("Glucose Level").tag(0)
+////                    Text("Blood Oxygen").tag(1)
+////                }
+////                .pickerStyle(SegmentedPickerStyle())
+////                .padding(.horizontal)
+////
+////                if selectedGraph == 0 {
+////                    GraphView(color: .blue)
+////                } else {
+////                    GraphView(color: .red)
+////                }
+////
+////                Spacer()
+////            }
+////            .navigationBarTitle("")
+////            .navigationBarHidden(true)
+////        }
+////    }
+////}
+//
+//struct HumanScreenView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        HumanScreenView()
+//    }
+//}
+//
+//import SwiftUI
+//
+//struct HumanScreenView: View {
+//    @State private var selectedGraph = 0
+//
+//    var body: some View {
+//        NavigationView {
+//            VStack {
+//                HStack {
+//                    Image("profile_photo")
+//                        .resizable()
+//                        .frame(width: 50, height: 50)
+//                        .clipShape(Circle())
+//                        .padding()
+//
+//                    VStack(alignment: .leading) {
+//                        Text("Pranav Krishnan")
+//                            .font(.title)
+//                            .foregroundColor(.black)
+//                        Text("7/11/23")
+//                            .font(.subheadline)
+//                            .foregroundColor(.gray)
+//                        Text("3:30 PM")
+//                            .font(.subheadline)
+//                            .foregroundColor(.gray)
+//                    }
+//                    .padding()
+//
+//                    NavigationLink(destination: SettingsView()) {
+//                        Image(systemName: "gearshape.fill")
+//                            .foregroundColor(.blue)
+//                            .font(.title)
+//                            .padding()
+//                    }
+//                }
+//                .background(RoundedRectangle(cornerRadius: 20)
+//                                .fill(Color.white.opacity(0.7)))
+//                .padding()
+//
+//                HStack {
+//                    NavigationLink(destination: PersonalLedgerView()) {
+//                        VStack {
+//                            Image(systemName: "book.fill")
+//                                .font(.largeTitle)
+//                                .foregroundColor(.blue)
+//                            Text("Personal Ledger")
+//                                .foregroundColor(.black)
+//                        }
+//                        .frame(minWidth: 0, maxWidth: .infinity)
+//                        .padding()
+//                        .background(RoundedRectangle(cornerRadius: 20).fill(Color.gray.opacity(0.2)))
+//                    }
+//
+//                    NavigationLink(destination: MedicalVisitsView()) {
+//                        VStack {
+//                            Image(systemName: "heart.text.square")
+//                                .font(.largeTitle)
+//                                .foregroundColor(.blue)
+//                            Text("Medical Visits")
+//                                .foregroundColor(.black)
+//                        }
+//                        .frame(minWidth: 0, maxWidth: .infinity)
+//                        .padding()
+//                        .background(RoundedRectangle(cornerRadius: 20).fill(Color.gray.opacity(0.2)))
+//                    }
+//
+//                    NavigationLink(destination: MedicineCabinetView()) {
+//                        VStack {
+//                            Image(systemName: "pills")
+//                                .font(.largeTitle)
+//                                .foregroundColor(.blue)
+//                            Text("Medicine Cabinet")
+//                                .foregroundColor(.black)
+//                        }
+//                        .frame(minWidth: 0, maxWidth: .infinity)
+//                        .padding()
+//                        .background(RoundedRectangle(cornerRadius: 20).fill(Color.gray.opacity(0.2)))
+//                    }
+//                }
+//                .padding()
+//
+//                Text("Activity")
+//                    .font(.title2)
+//                    .fontWeight(.bold)
+//                    .padding(.top, 10)
+//
+//                Picker("", selection: $selectedGraph) {
+//                    Text("Glucose Level").tag(0)
+//                    Text("Blood Oxygen").tag(1)
+//                }
+//                .pickerStyle(SegmentedPickerStyle())
+//                .padding(.horizontal)
+//
+//                if selectedGraph == 0 {
+//                    GraphView(color: .blue)
+//                } else {
+//                    GraphView(color: .red)
+//                }
+//
+//                Spacer()
+//            }
+//            .navigationBarTitle("")
+//            .navigationBarHidden(true)
+//        }
+//    }
+//}
+//
+//
+//
+//
+
 
 import SwiftUI
 
-struct SimpleLine: Shape {
-    func path(in rect: CGRect) -> Path {
-        var path = Path()
-        path.move(to: CGPoint(x: rect.minX, y: rect.midY))
-        path.addLine(to: CGPoint(x: rect.maxX, y: rect.midY))
-        return path
-    }
-}
-
-struct GraphBackground: View {
-    var body: some View {
-        GeometryReader { geometry in
-            Path { path in
-                let width = geometry.size.width
-                let height = geometry.size.height
-                
-                let xSpacing = width / 5
-                let ySpacing = height / 5
-                
-                for index in 0..<6 {
-                    path.move(to: CGPoint(x: CGFloat(index) * xSpacing, y: 0))
-                    path.addLine(to: CGPoint(x: CGFloat(index) * xSpacing, y: height))
-                }
-                
-                for index in 0..<6 {
-                    path.move(to: CGPoint(x: 0, y: CGFloat(index) * ySpacing))
-                    path.addLine(to: CGPoint(x: width, y: CGFloat(index) * ySpacing))
-                }
-            }
-            .stroke(Color.gray.opacity(0.3), lineWidth: 1)
-        }
-    }
-}
-
-struct GraphView: View {
-    let color: Color
-    
-    var body: some View {
-        ZStack {
-            GraphBackground()
-            SimpleLine()
-                .stroke(color, lineWidth: 2)
-        }
-        .frame(height: 200)
-        .padding(.horizontal)
-        .clipShape(RoundedRectangle(cornerRadius: 15, style: .continuous))
-        .overlay(
-            RoundedRectangle(cornerRadius: 15, style: .continuous)
-                .stroke(color, lineWidth: 2)
-        )
-    }
-}
-
 struct HumanScreenView: View {
     @State private var selectedGraph = 0
-    
+    @State private var showingQRCode = false
+
     var body: some View {
         NavigationView {
             VStack {
                 HStack {
-                    VStack(alignment: .leading) {
-                        Text("Pranav Krishnan")
-                            .font(.title)
-                            .foregroundColor(.black)
-                        Text("6/17/23")
-                            .font(.subheadline)
-                            .foregroundColor(.gray)
-                        Text("3:30 PM")
-                            .font(.subheadline)
-                            .foregroundColor(.gray)
+                    Image(systemName: "person.circle")
+                        .resizable()
+                        .frame(width: 50, height: 50)
+                        .padding()
+
+                    Button(action: {
+                        self.showingQRCode = true
+                    }) {
+                        VStack(alignment: .leading) {
+                            Text("Pranav Krishnan")
+                                .font(.title)
+                                .foregroundColor(.black)
+                        }
                     }
-                    .padding()
+                    .sheet(isPresented: $showingQRCode) {
+                        QRCodeView()
+                    }
+
                     Spacer()
+
+                    NavigationLink(destination: SettingsView()) {
+                        Image(systemName: "gearshape.fill")
+                            .foregroundColor(.blue)
+                            .font(.title)
+                            .padding()
+                    }
                 }
                 .background(RoundedRectangle(cornerRadius: 20)
                                 .fill(Color.white.opacity(0.7)))
                 .padding()
 
-                NavigationLink(destination: LedgerScreenView()) {
-                    Text("Personal Ledger")
-                        .font(.title)
-                        .foregroundColor(.white)
+                HStack {
+                    NavigationLink(destination: PersonalLedgerView()) {
+                        VStack {
+                            Image(systemName: "book.fill")
+                                .font(.largeTitle)
+                                .foregroundColor(.blue)
+                            Text("Personal Ledger")
+                                .foregroundColor(.black)
+                        }
                         .frame(minWidth: 0, maxWidth: .infinity)
                         .padding()
-                        .background(RoundedRectangle(cornerRadius: 20).fill(Color.blue.opacity(0.8)))
-                }
-                .padding()
+                        .background(RoundedRectangle(cornerRadius: 20).fill(Color.gray.opacity(0.2)))
+                    }
 
-                Button(action: {}) {
-                    Text("Medical Visits")
-                        .font(.title)
-                        .foregroundColor(.white)
+                    NavigationLink(destination: MedicalVisitsView()) {
+                        VStack {
+                            Image(systemName: "heart.text.square")
+                                .font(.largeTitle)
+                                .foregroundColor(.blue)
+                            Text("Medical Visits")
+                                .foregroundColor(.black)
+                        }
                         .frame(minWidth: 0, maxWidth: .infinity)
                         .padding()
-                        .background(RoundedRectangle(cornerRadius: 20).fill(Color.blue.opacity(0.8)))
-                }
-                .padding()
+                        .background(RoundedRectangle(cornerRadius: 20).fill(Color.gray.opacity(0.2)))
+                    }
 
-                Button(action: {}) {
-                    Text("Medicine Cabinet")
-                        .font(.title)
-                        .foregroundColor(.white)
+                    NavigationLink(destination: MedicineCabinetView()) {
+                        VStack {
+                            Image(systemName: "pills")
+                                .font(.largeTitle)
+                                .foregroundColor(.blue)
+                            Text("Medicine Cabinet")
+                                .foregroundColor(.black)
+                        }
                         .frame(minWidth: 0, maxWidth: .infinity)
                         .padding()
-                        .background(RoundedRectangle(cornerRadius: 20).fill(Color.blue.opacity(0.8)))
+                        .background(RoundedRectangle(cornerRadius: 20).fill(Color.gray.opacity(0.2)))
+                    }
                 }
                 .padding()
 
@@ -113,14 +305,14 @@ struct HumanScreenView: View {
                     .font(.title2)
                     .fontWeight(.bold)
                     .padding(.top, 10)
-                
+
                 Picker("", selection: $selectedGraph) {
-                    Text("Blue Graph").tag(0)
-                    Text("Red Graph").tag(1)
+                    Text("Glucose Level").tag(0)
+                    Text("Blood Oxygen").tag(1)
                 }
                 .pickerStyle(SegmentedPickerStyle())
                 .padding(.horizontal)
-                
+
                 if selectedGraph == 0 {
                     GraphView(color: .blue)
                 } else {
@@ -132,6 +324,33 @@ struct HumanScreenView: View {
             .navigationBarTitle("")
             .navigationBarHidden(true)
         }
+    }
+}
+
+
+
+struct QRCodeView: View {
+    var body: some View {
+        VStack {
+            Text("Pranav Krishnan")
+                .font(.title)
+                .fontWeight(.bold)
+
+            Text("Date of Birth: 01-01-1990")
+                .font(.body)
+                .padding(.top, 10)
+
+            Text("Appointment: 3:30 PM, 7/11/23")
+                .font(.body)
+                .padding(.top, 10)
+
+            Image("QRCode")
+                .resizable()
+                .scaledToFit()
+                .frame(height: 200)
+                .padding(.top, 20)
+        }
+        .padding()
     }
 }
 

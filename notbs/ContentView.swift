@@ -49,6 +49,8 @@ struct ContentView: View {
             .padding(.horizontal, 40)
             .padding(.bottom, 20)
         }
+        .navigationBarTitle("", displayMode: .inline)
+        .navigationBarHidden(true)
         .edgesIgnoringSafeArea([.top, .bottom])
     }
 

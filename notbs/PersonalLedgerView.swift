@@ -7,29 +7,6 @@
 
 import SwiftUI
 
-//struct PersonalLedgerView: View {
-//    let colors: [Color] = [.pink, .blue, .green, .orange, .yellow, .purple]
-//
-//    var body: some View {
-//        VStack {
-//            Text("Recent Events")
-//                .font(.largeTitle)
-//                .fontWeight(.heavy)
-//                .padding(.top, 15)
-//
-//            LazyVGrid(columns: Array(repeating: GridItem(.flexible()), count: 3)) {
-//                ForEach(0..<9) { index in
-//                    RoundedRectangle(cornerRadius: 20)
-//                        .fill(colors[index % colors.count])
-//                        .frame(height: 100)
-//                        .shadow(color: .gray, radius: 5, x: 5, y: 5)
-//                        .padding(.all, 10)
-//                }
-//            }
-//        }
-//    }
-//}
-
 
 struct PersonalLedgerView: View {
     @State private var showingFavorites = false
@@ -43,7 +20,7 @@ struct PersonalLedgerView: View {
                     .font(.headline)
             }
             .padding()
-            
+
             Text("Recent Events")
                 .font(.largeTitle)
                 .fontWeight(.heavy)
@@ -67,3 +44,6 @@ struct PersonalLedgerView_Previews: PreviewProvider {
         PersonalLedgerView()
     }
 }
+
+
+

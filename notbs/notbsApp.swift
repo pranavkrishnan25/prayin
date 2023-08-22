@@ -1,31 +1,46 @@
+////
+////  notbsApp.swift
+////  notbs
+////
+////  Created by Pranav Krishnan on 6/28/23.
+////
 //
-//  notbsApp.swift
-//  notbs
+//import SwiftUI
+//import FirebaseCore
 //
-//  Created by Pranav Krishnan on 6/28/23.
 //
+//@main
+//struct notbsApp: App {
+//    init(){
+//        FirebaseApp.configure()
+//    }
+//    var body: some Scene {
+//        WindowGroup {
+//            LaunchScreenView()
+//        }
+//    }
+//}
+
 
 import SwiftUI
 import FirebaseCore
-
-//
-//class AppDelegate: NSObject, UIApplicationDelegate {
-//  func application(_ application: UIApplication,
-//                   didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
-//    FirebaseApp.configure()
-//
-//    return true
-//  }
-//}
+import FirebaseAuth
 
 @main
 struct notbsApp: App {
-    init(){
+    init() {
         FirebaseApp.configure()
     }
+
+    @StateObject private var eventVM: EventViewModel = {
+        let userId = Auth.auth().currentUser?.uid ?? ""
+        return EventViewModel(userId: userId)
+    }()
+
     var body: some Scene {
         WindowGroup {
             LaunchScreenView()
+                .environmentObject(eventVM)
         }
     }
 }

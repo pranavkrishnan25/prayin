@@ -1,140 +1,8 @@
 
-import SwiftUI
-
-//struct PlusScreenView: View {
-//    @State private var showGroupMenu = false
-//    let groupOptions = ["Friends", "Family", "Personal", "Private", "Custom Group"]
-//    @State private var selectedGroup = ""
-//
-//    @State private var showTypeMenu = false
-//    let typeOptions = ["Injury", "Doctor Visit", "Medicine", "Fitness"]
-//    @State private var selectedType = ""
-//
-//    @State private var sendNotification = false
-//
-//    var body: some View {
-//        VStack(alignment: .leading) {
-//            Text("New Event")
-//                .font(.title)
-//                .fontWeight(.bold)
-//                .padding(.top, 30)
-//                .padding(.leading, 20)
-//
-//            OptionButtonView(showMenu: $showGroupMenu, selectedOption: $selectedGroup, options: groupOptions, label: "Group")
-//                .padding(.top, 20)
-//
-//            HStack {
-//                Text("Send Push Notification")
-//                    .font(.title3)
-//                    .foregroundColor(.black)
-//
-//                Spacer()
-//
-//                Toggle("", isOn: $sendNotification)
-//                    .labelsHidden() // This hides the default (empty) label of the Toggle
-//            }
-//            .padding(.horizontal, 20)
-//            .padding(.top, 20)
-//
-//            OptionButtonView(showMenu: $showTypeMenu, selectedOption: $selectedType, options: typeOptions, label: "Type")
-//                .padding(.top, 20)
-//
-//            Spacer()
-//
-//            HStack {
-//                Text("Picture")
-//                    .font(.title2)
-//                    .padding(.leading, 20)
-//
-//                Button(action: {
-//                    // Access the camera
-//                }) {
-//                    Image(systemName: "camera")
-//                        .font(.largeTitle)
-//                        .padding(20)
-//                        .background(RoundedRectangle(cornerRadius: 20)
-//                                        .fill(Color.blue.opacity(0.4)))
-//                }
-//                .padding(.leading)
-//            }
-//            .padding(.bottom, 20)
-//        }
-//    }
-//}
 
 import SwiftUI
-
-
-
-//struct PlusScreenView: View {
-//    @State private var showGroupMenu = false
-//    let groupOptions = ["Friends", "Family", "Personal", "Private", "Custom Group"]
-//    @State private var selectedGroup = ""
-//
-//    @State private var showTypeMenu = false
-//    let typeOptions = ["Injury", "Doctor Visit", "Medicine", "Fitness"]
-//    @State private var selectedType = ""
-//
-//    @State private var sendNotification = false
-//
-//    @State private var selectedDate = Date()
-//
-//    var body: some View {
-//        VStack(alignment: .leading) {
-//            Text("New Event")
-//                .font(.title)
-//                .fontWeight(.bold)
-//                .padding(.top, 30)
-//                .padding(.leading, 20)
-//
-//            OptionButtonView(showMenu: $showGroupMenu, selectedOption: $selectedGroup, options: groupOptions, label: "Group")
-//                .padding(.top, 20)
-//
-//            HStack {
-//                Text("Send Push Notification")
-//                    .font(.title3)
-//                    .foregroundColor(.black)
-//
-//                Spacer()
-//
-//                Toggle("", isOn: $sendNotification)
-//                    .labelsHidden() // This hides the default (empty) label of the Toggle
-//            }
-//            .padding(.horizontal, 20)
-//            .padding(.top, 20)
-//
-//            OptionButtonView(showMenu: $showTypeMenu, selectedOption: $selectedType, options: typeOptions, label: "Type")
-//                .padding(.top, 20)
-//
-//            DatePicker("Select Date", selection: $selectedDate, displayedComponents: .date)
-//                .datePickerStyle(GraphicalDatePickerStyle())
-//                .frame(maxHeight: 400)
-//                .padding()
-//
-//            Spacer()
-//
-//            HStack {
-//                Text("Picture")
-//                    .font(.title2)
-//                    .padding(.leading, 20)
-//
-//                Button(action: {
-//                    // Access the camera
-//                }) {
-//                    Image(systemName: "camera")
-//                        .font(.largeTitle)
-//                        .padding(20)
-//                        .background(RoundedRectangle(cornerRadius: 20)
-//                                        .fill(Color.blue.opacity(0.4)))
-//                }
-//                .padding(.leading)
-//            }
-//            .padding(.bottom, 20)
-//        }
-//    }
-//}
-
-import SwiftUI
+import Firebase
+import FirebaseAuth
 
 struct PlusScreenView: View {
     @State private var showGroupMenu = false
@@ -148,7 +16,7 @@ struct PlusScreenView: View {
     @State private var sendNotification = false
 
     @State private var selectedDate = Date()
-    
+
     @State private var selectedImage: UIImage?
     @State private var isCameraPresented = false
 
@@ -178,15 +46,13 @@ struct PlusScreenView: View {
 
             OptionButtonView(showMenu: $showTypeMenu, selectedOption: $selectedType, options: typeOptions, label: "Type")
                 .padding(.top, 20)
-                
+
             ScrollView(.vertical, showsIndicators: false) {
                 DatePicker("Select Date", selection: $selectedDate, displayedComponents: .date)
                     .datePickerStyle(GraphicalDatePickerStyle())
-                    .frame(height: 300) // Adjust height according to your requirement
+                    .frame(height: 300)
                     .padding()
             }
-            
-            Spacer(minLength: 10) // Adjust this spacer length as needed
 
             HStack {
                 Text("Picture")
@@ -208,6 +74,45 @@ struct PlusScreenView: View {
                 .padding(.leading)
             }
             .padding(.bottom, 20)
+
+            Button(action: sendButtonTapped) {
+                Text("Send")
+                    .font(.title2)
+                    .foregroundColor(.white)
+                    .padding(.vertical, 12)
+                    .padding(.horizontal, 30)
+                    .background(RoundedRectangle(cornerRadius: 20)
+                                    .fill(Color.blue))
+            }
+            .padding(.bottom, 20)
+        }
+    }
+
+    func sendButtonTapped() {
+        let db = Firestore.firestore()
+
+        // Ensure user is logged in
+        guard let userId = Auth.auth().currentUser?.uid else {
+            print("No user is logged in")
+            return
+        }
+
+        // Data to save:
+        let eventData: [String: Any] = [
+            "group": selectedGroup,
+            "type": selectedType,
+            "date": Timestamp(date: selectedDate),
+            "userId": userId  // Associate with the current user
+        ]
+
+        // Save event to the user's specific events sub-collection
+        let userRef = db.collection("users").document(userId)
+        userRef.collection("events").addDocument(data: eventData) { error in
+            if let error = error {
+                print("Error adding document: \(error)")
+            } else {
+                print("Document successfully added!")
+            }
         }
     }
 }
@@ -263,3 +168,4 @@ struct PlusScreenView_Previews: PreviewProvider {
         PlusScreenView()
     }
 }
+

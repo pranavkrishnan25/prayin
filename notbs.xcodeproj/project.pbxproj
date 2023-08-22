@@ -19,6 +19,8 @@
 		410F17D82A4CD66300AF965C /* PlusScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 410F17D72A4CD66300AF965C /* PlusScreenView.swift */; };
 		410F17DA2A4CD68400AF965C /* HumanScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 410F17D92A4CD68400AF965C /* HumanScreenView.swift */; };
 		410F17DC2A4E7CA500AF965C /* LedgerScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 410F17DB2A4E7CA500AF965C /* LedgerScreenView.swift */; };
+		411C4D192A8564C4006CA956 /* EventViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 411C4D182A8564C4006CA956 /* EventViewModel.swift */; };
+		411C4D1D2A91685C006CA956 /* EventListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 411C4D1C2A91685C006CA956 /* EventListView.swift */; };
 		412585B72A70956A0015470E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 412585B62A70956A0015470E /* GoogleService-Info.plist */; };
 		412585B82A70956A0015470E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 412585B62A70956A0015470E /* GoogleService-Info.plist */; };
 		412585B92A70956A0015470E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 412585B62A70956A0015470E /* GoogleService-Info.plist */; };
@@ -56,6 +58,8 @@
 		412EDC872A6462B0006DC907 /* MedicalVisitsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 412EDC862A6462B0006DC907 /* MedicalVisitsView.swift */; };
 		412EDC892A6462C8006DC907 /* MedicineCabinetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 412EDC882A6462C8006DC907 /* MedicineCabinetView.swift */; };
 		412EDC8B2A6477A5006DC907 /* ImagePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 412EDC8A2A6477A5006DC907 /* ImagePickerView.swift */; };
+		41846DDF2A9261CC002536C0 /* HomeScreenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41846DDE2A9261CC002536C0 /* HomeScreenViewModel.swift */; };
+		41846DE12A95248C002536C0 /* ContactsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41846DE02A95248C002536C0 /* ContactsView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -91,6 +95,8 @@
 		410F17D72A4CD66300AF965C /* PlusScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlusScreenView.swift; sourceTree = "<group>"; };
 		410F17D92A4CD68400AF965C /* HumanScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HumanScreenView.swift; sourceTree = "<group>"; };
 		410F17DB2A4E7CA500AF965C /* LedgerScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LedgerScreenView.swift; sourceTree = "<group>"; };
+		411C4D182A8564C4006CA956 /* EventViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventViewModel.swift; sourceTree = "<group>"; };
+		411C4D1C2A91685C006CA956 /* EventListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventListView.swift; sourceTree = "<group>"; };
 		412585B62A70956A0015470E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		412EDC7E2A646202006DC907 /* LaunchScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchScreenView.swift; sourceTree = "<group>"; };
 		412EDC802A646231006DC907 /* GraphView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphView.swift; sourceTree = "<group>"; };
@@ -99,6 +105,8 @@
 		412EDC862A6462B0006DC907 /* MedicalVisitsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedicalVisitsView.swift; sourceTree = "<group>"; };
 		412EDC882A6462C8006DC907 /* MedicineCabinetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedicineCabinetView.swift; sourceTree = "<group>"; };
 		412EDC8A2A6477A5006DC907 /* ImagePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePickerView.swift; sourceTree = "<group>"; };
+		41846DDE2A9261CC002536C0 /* HomeScreenViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreenViewModel.swift; sourceTree = "<group>"; };
+		41846DE02A95248C002536C0 /* ContactsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -182,8 +190,12 @@
 				412585B62A70956A0015470E /* GoogleService-Info.plist */,
 				410F17AB2A4CCD4A00AF965C /* Preview Content */,
 				410F17CF2A4CCEB000AF965C /* Launch Screen.storyboard */,
+				41846DE02A95248C002536C0 /* ContactsView.swift */,
 				410F17D52A4CD63F00AF965C /* HomeScreenView.swift */,
+				41846DDE2A9261CC002536C0 /* HomeScreenViewModel.swift */,
+				411C4D182A8564C4006CA956 /* EventViewModel.swift */,
 				410F17D72A4CD66300AF965C /* PlusScreenView.swift */,
+				411C4D1C2A91685C006CA956 /* EventListView.swift */,
 				412EDC8A2A6477A5006DC907 /* ImagePickerView.swift */,
 				410F17D92A4CD68400AF965C /* HumanScreenView.swift */,
 				412EDC882A6462C8006DC907 /* MedicineCabinetView.swift */,
@@ -397,9 +409,13 @@
 				410F17DC2A4E7CA500AF965C /* LedgerScreenView.swift in Sources */,
 				412EDC892A6462C8006DC907 /* MedicineCabinetView.swift in Sources */,
 				410F17D82A4CD66300AF965C /* PlusScreenView.swift in Sources */,
+				41846DDF2A9261CC002536C0 /* HomeScreenViewModel.swift in Sources */,
 				412EDC8B2A6477A5006DC907 /* ImagePickerView.swift in Sources */,
+				411C4D1D2A91685C006CA956 /* EventListView.swift in Sources */,
 				412EDC852A64629E006DC907 /* PersonalLedgerView.swift in Sources */,
 				410F17D62A4CD63F00AF965C /* HomeScreenView.swift in Sources */,
+				41846DE12A95248C002536C0 /* ContactsView.swift in Sources */,
+				411C4D192A8564C4006CA956 /* EventViewModel.swift in Sources */,
 				412EDC812A646231006DC907 /* GraphView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -562,6 +578,7 @@
 				DEVELOPMENT_TEAM = 58X498839K;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSContactsUsageDescription = "To allow users to choose which other users from their contacts can have access to their posts";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -591,6 +608,7 @@
 				DEVELOPMENT_TEAM = 58X498839K;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSContactsUsageDescription = "To allow users to choose which other users from their contacts can have access to their posts";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

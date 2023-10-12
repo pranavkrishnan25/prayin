@@ -58,8 +58,14 @@
 		412EDC872A6462B0006DC907 /* MedicalVisitsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 412EDC862A6462B0006DC907 /* MedicalVisitsView.swift */; };
 		412EDC892A6462C8006DC907 /* MedicineCabinetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 412EDC882A6462C8006DC907 /* MedicineCabinetView.swift */; };
 		412EDC8B2A6477A5006DC907 /* ImagePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 412EDC8A2A6477A5006DC907 /* ImagePickerView.swift */; };
+		417053D82A98FD73009F4E36 /* ModifiedHumanScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 417053D72A98FD73009F4E36 /* ModifiedHumanScreen.swift */; };
+		417053DB2A9901D8009F4E36 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 417053DA2A9901D8009F4E36 /* Alamofire */; };
+		417053DD2A990298009F4E36 /* cosmos-test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 417053DC2A990298009F4E36 /* cosmos-test.swift */; };
+		417053DF2A9902A1009F4E36 /* CosmosDBService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 417053DE2A9902A1009F4E36 /* CosmosDBService.swift */; };
 		41846DDF2A9261CC002536C0 /* HomeScreenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41846DDE2A9261CC002536C0 /* HomeScreenViewModel.swift */; };
 		41846DE12A95248C002536C0 /* ContactsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41846DE02A95248C002536C0 /* ContactsView.swift */; };
+		418C52782AB9F73D0066B22D /* ContactsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 418C52772AB9F73D0066B22D /* ContactsViewModel.swift */; };
+		4193D5D62ABD00A000C4C288 /* TestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4193D5D52ABD00A000C4C288 /* TestView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -105,8 +111,13 @@
 		412EDC862A6462B0006DC907 /* MedicalVisitsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedicalVisitsView.swift; sourceTree = "<group>"; };
 		412EDC882A6462C8006DC907 /* MedicineCabinetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedicineCabinetView.swift; sourceTree = "<group>"; };
 		412EDC8A2A6477A5006DC907 /* ImagePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePickerView.swift; sourceTree = "<group>"; };
+		417053D72A98FD73009F4E36 /* ModifiedHumanScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModifiedHumanScreen.swift; sourceTree = "<group>"; };
+		417053DC2A990298009F4E36 /* cosmos-test.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "cosmos-test.swift"; sourceTree = "<group>"; };
+		417053DE2A9902A1009F4E36 /* CosmosDBService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CosmosDBService.swift; sourceTree = "<group>"; };
 		41846DDE2A9261CC002536C0 /* HomeScreenViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreenViewModel.swift; sourceTree = "<group>"; };
 		41846DE02A95248C002536C0 /* ContactsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsView.swift; sourceTree = "<group>"; };
+		418C52772AB9F73D0066B22D /* ContactsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsViewModel.swift; sourceTree = "<group>"; };
+		4193D5D52ABD00A000C4C288 /* TestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,6 +126,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				412585CE2A709C4D0015470E /* FirebaseDatabase in Frameworks */,
+				417053DB2A9901D8009F4E36 /* Alamofire in Frameworks */,
 				412585DC2A709C4D0015470E /* FirebaseFunctionsCombine-Community in Frameworks */,
 				412585D42A709C4D0015470E /* FirebaseFirestore in Frameworks */,
 				412585C02A709C4D0015470E /* FirebaseAnalyticsSwift in Frameworks */,
@@ -191,6 +203,10 @@
 				410F17AB2A4CCD4A00AF965C /* Preview Content */,
 				410F17CF2A4CCEB000AF965C /* Launch Screen.storyboard */,
 				41846DE02A95248C002536C0 /* ContactsView.swift */,
+				4193D5D52ABD00A000C4C288 /* TestView.swift */,
+				418C52772AB9F73D0066B22D /* ContactsViewModel.swift */,
+				417053DC2A990298009F4E36 /* cosmos-test.swift */,
+				417053DE2A9902A1009F4E36 /* CosmosDBService.swift */,
 				410F17D52A4CD63F00AF965C /* HomeScreenView.swift */,
 				41846DDE2A9261CC002536C0 /* HomeScreenViewModel.swift */,
 				411C4D182A8564C4006CA956 /* EventViewModel.swift */,
@@ -199,6 +215,7 @@
 				412EDC8A2A6477A5006DC907 /* ImagePickerView.swift */,
 				410F17D92A4CD68400AF965C /* HumanScreenView.swift */,
 				412EDC882A6462C8006DC907 /* MedicineCabinetView.swift */,
+				417053D72A98FD73009F4E36 /* ModifiedHumanScreen.swift */,
 				412EDC862A6462B0006DC907 /* MedicalVisitsView.swift */,
 				412EDC842A64629E006DC907 /* PersonalLedgerView.swift */,
 				412EDC822A646267006DC907 /* SettingsView.swift */,
@@ -278,6 +295,7 @@
 				412585EB2A709C4D0015470E /* FirebaseRemoteConfigSwift */,
 				412585ED2A709C4D0015470E /* FirebaseStorage */,
 				412585EF2A709C4D0015470E /* FirebaseStorageCombine-Community */,
+				417053DA2A9901D8009F4E36 /* Alamofire */,
 			);
 			productName = notbs;
 			productReference = 410F17A22A4CCD4900AF965C /* notbs.app */;
@@ -353,6 +371,7 @@
 			mainGroup = 410F17992A4CCD4900AF965C;
 			packageReferences = (
 				412585BA2A709C4D0015470E /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				417053D92A9901D8009F4E36 /* XCRemoteSwiftPackageReference "Alamofire" */,
 			);
 			productRefGroup = 410F17A32A4CCD4900AF965C /* Products */;
 			projectDirPath = "";
@@ -400,7 +419,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				417053D82A98FD73009F4E36 /* ModifiedHumanScreen.swift in Sources */,
 				410F17A82A4CCD4900AF965C /* ContentView.swift in Sources */,
+				4193D5D62ABD00A000C4C288 /* TestView.swift in Sources */,
 				410F17DA2A4CD68400AF965C /* HumanScreenView.swift in Sources */,
 				412EDC7F2A646202006DC907 /* LaunchScreenView.swift in Sources */,
 				412EDC832A646267006DC907 /* SettingsView.swift in Sources */,
@@ -409,10 +430,13 @@
 				410F17DC2A4E7CA500AF965C /* LedgerScreenView.swift in Sources */,
 				412EDC892A6462C8006DC907 /* MedicineCabinetView.swift in Sources */,
 				410F17D82A4CD66300AF965C /* PlusScreenView.swift in Sources */,
+				418C52782AB9F73D0066B22D /* ContactsViewModel.swift in Sources */,
+				417053DD2A990298009F4E36 /* cosmos-test.swift in Sources */,
 				41846DDF2A9261CC002536C0 /* HomeScreenViewModel.swift in Sources */,
 				412EDC8B2A6477A5006DC907 /* ImagePickerView.swift in Sources */,
 				411C4D1D2A91685C006CA956 /* EventListView.swift in Sources */,
 				412EDC852A64629E006DC907 /* PersonalLedgerView.swift in Sources */,
+				417053DF2A9902A1009F4E36 /* CosmosDBService.swift in Sources */,
 				410F17D62A4CD63F00AF965C /* HomeScreenView.swift in Sources */,
 				41846DE12A95248C002536C0 /* ContactsView.swift in Sources */,
 				411C4D192A8564C4006CA956 /* EventViewModel.swift in Sources */,
@@ -578,6 +602,8 @@
 				DEVELOPMENT_TEAM = 58X498839K;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = Thelyx;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.healthcare-fitness";
 				INFOPLIST_KEY_NSContactsUsageDescription = "To allow users to choose which other users from their contacts can have access to their posts";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -608,6 +634,8 @@
 				DEVELOPMENT_TEAM = 58X498839K;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = Thelyx;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.healthcare-fitness";
 				INFOPLIST_KEY_NSContactsUsageDescription = "To allow users to choose which other users from their contacts can have access to their posts";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -753,6 +781,14 @@
 				minimumVersion = 10.0.0;
 			};
 		};
+		417053D92A9901D8009F4E36 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -890,6 +926,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 412585BA2A709C4D0015470E /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = "FirebaseStorageCombine-Community";
+		};
+		417053DA2A9901D8009F4E36 /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 417053D92A9901D8009F4E36 /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

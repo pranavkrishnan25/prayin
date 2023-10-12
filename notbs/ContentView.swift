@@ -170,6 +170,7 @@
 
 import SwiftUI
 import Firebase
+import FirebaseAuth
 
 struct ContentView: View {
     @EnvironmentObject var eventVM: EventViewModel
@@ -182,20 +183,41 @@ struct ContentView: View {
                 .fontWeight(.bold)
                 .padding()
 
+//            Group {
+//                switch selectedTab {
+//                case .home:
+//                    HomeScreenView(homeVM: HomeScreenViewModel(userId: "xDZPaThouLM9Qavo9GYSeNQIEDc2"))
+//                case .plus:
+//                    PlusScreenView()
+//                case .events:
+//                    EventsListView(eventVM: eventVM)
+//                case .human:
+//                    TestView()
+//                case .contacts:  // This is the new ContactsView case.
+//                    ContactsView()
+//                }
+//            }
+
             Group {
-                switch selectedTab {
-                case .home:
-                    HomeScreenView(homeVM: HomeScreenViewModel(userId: "xDZPaThouLM9Qavo9GYSeNQIEDc2"))
-                case .plus:
-                    PlusScreenView()
-                case .events:
-                    EventsListView(eventVM: eventVM)
-                case .human:
-                    HumanScreenView()
-                case .contacts:  // This is the new ContactsView case.
-                    ContactsView()
+                if let currentUserId = Auth.auth().currentUser?.uid {
+                    switch selectedTab {
+                    case .home:
+                        HomeScreenView(homeVM: HomeScreenViewModel(userId: currentUserId))
+                    case .plus:
+                        PlusScreenView()
+                    case .events:
+                        EventsListView(eventVM: eventVM)
+                    case .human:
+                        TestView()
+                    case .contacts:  // This is the new ContactsView case.
+                        ContactsView()
+                    }
+                } else {
+                    // Handle the case where no user is logged in, perhaps show a login screen or an error message
+                    Text("Please log in to continue.")
                 }
             }
+
 
             Spacer(minLength: 0)
 
@@ -276,6 +298,6 @@ struct ContentView: View {
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
-            .environmentObject(EventViewModel(userId: "xDZPaThouLM9Qavo9GYSeNQIEDc2"))
+            .environmentObject(EventViewModel(userId: "mockUserIdForPreview"))
     }
 }

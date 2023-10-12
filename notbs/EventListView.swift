@@ -6,58 +6,6 @@
 //
 
 import SwiftUI
-//
-//struct EventsListView: View {
-//    @ObservedObject var eventVM: EventViewModel
-//
-//    var body: some View {
-//        List(eventVM.events, id: \.date) { event in
-//            VStack(alignment: .leading) {
-//                Text(event.group)
-//                    .font(.headline)
-//                Text(event.type)
-//                    .font(.subheadline)
-//                Text("\(event.date)")
-//                    .font(.caption)
-//            }
-//        }
-//    }
-//}
-
-
-//struct EventsListView: View {
-//    @ObservedObject var eventVM: EventViewModel
-//    @State private var searchQuery: String = ""
-//
-//    var filteredEvents: [Event] {
-//        eventVM.events.filter {
-//            searchQuery.isEmpty ||
-//            $0.group.localizedCaseInsensitiveContains(searchQuery) ||
-//            $0.type.localizedCaseInsensitiveContains(searchQuery)
-//        }
-//    }
-//
-//    var body: some View {
-//        VStack {
-//            TextField("Search events...", text: $searchQuery)
-//                .padding(10)
-//                .background(Color.gray.opacity(0.2))
-//                .cornerRadius(8)
-//                .padding(.horizontal)
-//
-//            List(filteredEvents, id: \.date) { event in
-//                VStack(alignment: .leading) {
-//                    Text(event.group)
-//                        .font(.headline)
-//                    Text(event.type)
-//                        .font(.subheadline)
-//                    Text("\(event.date)")
-//                        .font(.caption)
-//                }
-//            }
-//        }
-//    }
-//}
 
 
 struct EventsListView: View {

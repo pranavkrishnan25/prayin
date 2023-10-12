@@ -1,385 +1,195 @@
-////import SwiftUI
-////import Contacts
-////
-////struct ContactsView: View {
-////    @State private var selectedGroup: GroupType?
-////    @State private var contacts: [CNContact] = []
-////
-////    var body: some View {
-////        VStack {
-////            HStack {
-////                GroupButton(group: .friends, selectedGroup: $selectedGroup, action: {
-////                    self.fetchContacts(for: .friends)
-////                })
-////                GroupButton(group: .family, selectedGroup: $selectedGroup, action: {
-////                    self.fetchContacts(for: .family)
-////                })
-////                GroupButton(group: .personal, selectedGroup: $selectedGroup, action: {
-////                    self.fetchContacts(for: .personal)
-////                })
-////            }
-////
-////            List(contacts, id: \.identifier) { contact in
-////                VStack(alignment: .leading) {
-////                    Text(contact.givenName + " " + contact.familyName)
-////                    if let phoneNumber = contact.phoneNumbers.first?.value.stringValue {
-////                        Text(phoneNumber)
-////                    }
-////                }
-////            }
-////        }
-////        .padding()
-////    }
-////
-////    func fetchContacts(for group: GroupType) {
-////        contacts = [] // Clear out the old contacts
-////        let store = CNContactStore()
-////
-////        switch CNContactStore.authorizationStatus(for: .contacts) {
-////        case .authorized:
-////            retrieveContacts(from: store)
-////        case .notDetermined:
-////            store.requestAccess(for: .contacts) { success, error in
-////                if success {
-////                    retrieveContacts(from: store)
-////                }
-////            }
-////        default:
-////            print("Contacts access denied.")
-////        }
-////    }
-////
-////    func retrieveContacts(from store: CNContactStore) {
-////        let keys = [CNContactGivenNameKey, CNContactFamilyNameKey, CNContactPhoneNumbersKey] as [CNKeyDescriptor]
-////        let request = CNContactFetchRequest(keysToFetch: keys)
-////
-////        do {
-////            try store.enumerateContacts(with: request) { (contact, stop) in
-////                self.contacts.append(contact)
-////            }
-////        } catch {
-////            print("Failed to fetch contacts:", error)
-////        }
-////    }
-////
-////    enum GroupType {
-////        case friends, family, personal
-////    }
-////
-////    struct GroupButton: View {
-////        let group: GroupType
-////        @Binding var selectedGroup: GroupType?
-////        let action: () -> Void
-////
-////        var body: some View {
-////            Button(action: {
-////                selectedGroup = group
-////                action()
-////            }) {
-////                Text(group.title)
-////                    .padding()
-////                    .background(Color.blue)
-////                    .foregroundColor(.white)
-////                    .cornerRadius(10)
-////            }
-////        }
-////    }
-////}
-////
-////extension ContactsView.GroupType {
-////    var title: String {
-////        switch self {
-////        case .friends:
-////            return "Friends"
-////        case .family:
-////            return "Family"
-////        case .personal:
-////            return "Personal"
-////        }
-////    }
-////}
-//
-//
-//
-//
-//
-//
-//
-//import SwiftUI
-//import Contacts
-//import Firebase
-//
-//struct ContactsView: View {
-//    @State private var selectedGroup: GroupType?
-//    @State private var contacts: [CNContact] = []
-//    @State private var selectedContacts: [CNContact] = []
-//
-//    var body: some View {
-//        VStack {
-//            HStack {
-//                GroupButton(group: .friends, selectedGroup: $selectedGroup, action: {
-//                    self.fetchContacts(for: .friends)
-//                })
-//                GroupButton(group: .family, selectedGroup: $selectedGroup, action: {
-//                    self.fetchContacts(for: .family)
-//                })
-//                GroupButton(group: .personal, selectedGroup: $selectedGroup, action: {
-//                    self.fetchContacts(for: .personal)
-//                })
-//            }
-//
-//            List(contacts, id: \.identifier) { contact in
-//                Button(action: {
-//                    if selectedContacts.contains(where: { $0.identifier == contact.identifier }) {
-//                        selectedContacts.removeAll(where: { $0.identifier == contact.identifier })
-//                    } else {
-//                        selectedContacts.append(contact)
-//                    }
-//                }) {
-//                    HStack {
-//                        VStack(alignment: .leading) {
-//                            Text(contact.givenName + " " + contact.familyName)
-//                            if let phoneNumber = contact.phoneNumbers.first?.value.stringValue {
-//                                Text(phoneNumber)
-//                            }
-//                        }
-//                        Spacer()
-//                        if selectedContacts.contains(where: { $0.identifier == contact.identifier }) {
-//                            Image(systemName: "checkmark.circle.fill").foregroundColor(.blue)
-//                        }
-//                    }
-//                }
-//            }
-//
-//            Button("Add") {
-//                for contact in selectedContacts {
-//                    if let phoneNumber = contact.phoneNumbers.first?.value.stringValue {
-//                        print("\(contact.givenName) \(contact.familyName): \(phoneNumber)")
-//                    }
-//                }
-//            }
-//            .padding()
-//            .background(Color.blue)
-//            .foregroundColor(.white)
-//            .cornerRadius(10)
-//        }
-//        .padding()
-//    }
-//
-//    // ... [The rest of your methods and enums remain unchanged]
-//
-//    func fetchContacts(for group: GroupType) {
-//        contacts = [] // Clear out the old contacts
-//        let store = CNContactStore()
-//
-//        switch CNContactStore.authorizationStatus(for: .contacts) {
-//        case .authorized:
-//            retrieveContacts(from: store)
-//        case .notDetermined:
-//            store.requestAccess(for: .contacts) { success, error in
-//                if success {
-//                    retrieveContacts(from: store)
-//                }
-//            }
-//        default:
-//            print("Contacts access denied.")
-//        }
-//    }
-//
-//    func retrieveContacts(from store: CNContactStore) {
-//        let keys = [CNContactGivenNameKey, CNContactFamilyNameKey, CNContactPhoneNumbersKey] as [CNKeyDescriptor]
-//        let request = CNContactFetchRequest(keysToFetch: keys)
-//
-//        do {
-//            try store.enumerateContacts(with: request) { (contact, stop) in
-//                self.contacts.append(contact)
-//            }
-//        } catch {
-//            print("Failed to fetch contacts:", error)
-//        }
-//    }
-//
-//    enum GroupType {
-//        case friends, family, personal
-//    }
-//
-//    struct GroupButton: View {
-//        let group: GroupType
-//        @Binding var selectedGroup: GroupType?
-//        let action: () -> Void
-//
-//        var body: some View {
-//            Button(action: {
-//                selectedGroup = group
-//                action()
-//            }) {
-//                Text(group.title)
-//                    .padding()
-//                    .background(Color.blue)
-//                    .foregroundColor(.white)
-//                    .cornerRadius(10)
-//            }
-//        }
-//    }
-//}
-//
-//extension ContactsView.GroupType {
-//    var title: String {
-//        switch self {
-//        case .friends:
-//            return "Friends"
-//        case .family:
-//            return "Family"
-//        case .personal:
-//            return "Personal"
-//        }
-//    }
-//}
-
 
 import SwiftUI
+import FirebaseFirestore
 import Contacts
-import Firebase
+import FirebaseAuth
 
 struct ContactsView: View {
-    @State private var selectedGroup: GroupType?
     @State private var contacts: [CNContact] = []
     @State private var selectedContacts: [CNContact] = []
-
+    @State private var selectedGroup: String = "Friends"
+    @State private var groupOptions = ["Friends", "Family"]
+    
     var body: some View {
         VStack {
-            HStack {
-                GroupButton(group: .friends, selectedGroup: $selectedGroup, action: {
-                    self.fetchContacts(for: .friends)
-                })
-                GroupButton(group: .family, selectedGroup: $selectedGroup, action: {
-                    self.fetchContacts(for: .family)
-                })
-                GroupButton(group: .personal, selectedGroup: $selectedGroup, action: {
-                    self.fetchContacts(for: .personal)
-                })
+            // Group Picker
+            Picker("Group", selection: $selectedGroup) {
+                ForEach(groupOptions, id: \.self) { group in
+                    Text(group)
+                }
             }
-
+            .pickerStyle(SegmentedPickerStyle())
+            .padding()
+            
+            // Contacts List
+            //            List(contacts, id: \.identifier) { contact in
+            //                HStack {
+            //                    Text("\(contact.givenName) \(contact.familyName)")
+            //                    Spacer()
+            //                    if selectedContacts.contains(where: { $0.identifier == contact.identifier }) {
+            //                        Image(systemName: "checkmark")
+            //                    }
+            //                }
+            //                .contentShape(Rectangle())
+            //                .onTapGesture {
+            //                    if let index = selectedContacts.firstIndex(where: { $0.identifier == contact.identifier }) {
+            //                        selectedContacts.remove(at: index)
+            //                    } else {
+            //                        selectedContacts.append(contact)
+            //                    }
+            //                }
+            //            }
             List(contacts, id: \.identifier) { contact in
-                Button(action: {
+                HStack {
+                    VStack(alignment: .leading) {
+                        Text("\(contact.givenName) \(contact.familyName)")
+                        if let phoneNumber = contact.phoneNumbers.first?.value.stringValue {
+                            Text(phoneNumber)
+                                .font(.subheadline)
+                                .foregroundColor(.gray)
+                        }
+                    }
+                    Spacer()
                     if selectedContacts.contains(where: { $0.identifier == contact.identifier }) {
-                        selectedContacts.removeAll(where: { $0.identifier == contact.identifier })
+                        Image(systemName: "checkmark")
+                    }
+                }
+                .contentShape(Rectangle())
+                .onTapGesture {
+                    if let index = selectedContacts.firstIndex(where: { $0.identifier == contact.identifier }) {
+                        selectedContacts.remove(at: index)
                     } else {
                         selectedContacts.append(contact)
                     }
-                }) {
-                    HStack {
-                        VStack(alignment: .leading) {
-                            Text(contact.givenName + " " + contact.familyName)
-                            if let phoneNumber = contact.phoneNumbers.first?.value.stringValue {
-                                Text(phoneNumber)
-                            }
-                        }
-                        Spacer()
-                        if selectedContacts.contains(where: { $0.identifier == contact.identifier }) {
-                            Image(systemName: "checkmark.circle.fill").foregroundColor(.blue)
-                        }
-                    }
                 }
             }
-
-            Button("Add") {
-                let db = Firestore.firestore()
-                guard let userId = Auth.auth().currentUser?.uid else {
-                    print("User not logged in!")
-                    return
-                }
-
-                for contact in selectedContacts {
-                    if let phoneNumber = contact.phoneNumbers.first?.value.stringValue {
-                        let contactData: [String: Any] = [
-                            "firstName": contact.givenName,
-                            "lastName": contact.familyName,
-                            "phoneNumber": phoneNumber
-                        ]
-
-                        db.collection("users").document(userId).collection("contacts").addDocument(data: contactData) { error in
-                            if let error = error {
-                                print("Error adding document: \(error)")
-                            } else {
-                                print("Document successfully written!")
-                            }
-                        }
-                    }
-                }
+            
+            
+            // Send to Firebase Button
+            Button("Send to Firebase") {
+                sendToFirebase()
             }
             .padding()
-            .background(Color.blue)
-            .foregroundColor(.white)
-            .cornerRadius(10)
         }
-        .padding()
+        .onAppear {
+            fetchContacts()
+        }
     }
-
-    func fetchContacts(for group: GroupType) {
-        contacts = [] // Clear out the old contacts
+    
+    // Fetch Contacts
+    func fetchContacts() {
         let store = CNContactStore()
-
-        switch CNContactStore.authorizationStatus(for: .contacts) {
-        case .authorized:
-            retrieveContacts(from: store)
-        case .notDetermined:
-            store.requestAccess(for: .contacts) { success, error in
-                if success {
-                    retrieveContacts(from: store)
-                }
-            }
-        default:
-            print("Contacts access denied.")
-        }
-    }
-
-    func retrieveContacts(from store: CNContactStore) {
-        let keys = [CNContactGivenNameKey, CNContactFamilyNameKey, CNContactPhoneNumbersKey] as [CNKeyDescriptor]
-        let request = CNContactFetchRequest(keysToFetch: keys)
-
+        let keysToFetch = [CNContactGivenNameKey, CNContactFamilyNameKey, CNContactIdentifierKey, CNContactPhoneNumbersKey] as [CNKeyDescriptor]
+        
+        let fetchRequest = CNContactFetchRequest(keysToFetch: keysToFetch)
+        
         do {
-            try store.enumerateContacts(with: request) { (contact, stop) in
+            try store.enumerateContacts(with: fetchRequest, usingBlock: { (contact, stopPointer) in
                 self.contacts.append(contact)
-            }
-        } catch {
+            })
+        } catch let error {
             print("Failed to fetch contacts:", error)
         }
     }
 
-    enum GroupType {
-        case friends, family, personal
-    }
+//    func sendToFirebase() {
+//        let db = Firestore.firestore()
+//
+//        if let user = Auth.auth().currentUser {
+//            let userId = user.uid
+//
+//            for contact in selectedContacts {
+//                let phoneNumber = contact.phoneNumbers.first?.value.stringValue ?? ""
+//
+//                // Check if this phoneNumber exists in the users collection
+//                db.collection("users").whereField("Phone Number", isEqualTo: phoneNumber).getDocuments { (querySnapshot, error) in
+//                    if let error = error {
+//                        print("Error getting documents: \(error)")
+//                    } else {
+//                        if let firstDocument = querySnapshot?.documents.first {
+//                            // This means a user with this phone number exists
+//                            let userPhoneNumber = firstDocument.data()["Phone Number"] as? String ?? "Not a user"
+//                            let contactData: [String: Any] = [
+//                                "firstName": contact.givenName,
+//                                "lastName": contact.familyName,
+//                                "phoneNumber": userPhoneNumber
+//                            ]
+//
+//                            // Create a unique ID based on the contact's first name, last name, and group
+//                            let uniqueID = "\(contact.givenName)-\(contact.familyName)-\(selectedGroup)"
+//
+//                            db.collection("users").document(userId).collection("contacts").document(selectedGroup).collection(selectedGroup).document(uniqueID).setData(contactData)
+//                        } else {
+//                            // No user with this phone number exists
+//                            let contactData: [String: Any] = [
+//                                "firstName": contact.givenName,
+//                                "lastName": contact.familyName,
+//                                "phoneNumber": "Not a user"
+//                            ]
+//
+//                            // Create a unique ID based on the contact's first name, last name, and group
+//                            let uniqueID = "\(contact.givenName)-\(contact.familyName)-\(selectedGroup)"
+//
+//                            db.collection("users").document(userId).collection("contacts").document(selectedGroup).collection(selectedGroup).document(uniqueID).setData(contactData)
+//                        }
+//                    }
+//                }
+//            }
+//        }
+//    }
+    func sendToFirebase() {
+        let db = Firestore.firestore()
 
-    struct GroupButton: View {
-        let group: GroupType
-        @Binding var selectedGroup: GroupType?
-        let action: () -> Void
+        if let user = Auth.auth().currentUser {
+            let userId = user.uid
 
-        var body: some View {
-            Button(action: {
-                selectedGroup = group
-                action()
-            }) {
-                Text(group.title)
-                    .padding()
-                    .background(Color.blue)
-                    .foregroundColor(.white)
-                    .cornerRadius(10)
+            for contact in selectedContacts {
+                let phoneNumber = contact.phoneNumbers.first?.value.stringValue ?? ""
+
+                // Check if this phoneNumber exists in the users collection
+                db.collection("users").whereField("Phone Number", isEqualTo: phoneNumber).getDocuments { (querySnapshot, error) in
+                    if let error = error {
+                        print("Error getting documents: \(error)")
+                    } else {
+                        if let firstDocument = querySnapshot?.documents.first {
+                            // This means a user with this phone number exists
+                            let userPhoneNumber = firstDocument.data()["Phone Number"] as? String ?? "Not a user"
+                            let matchedUserId = firstDocument.documentID // This is the userID of the matched user
+
+                            let contactData: [String: Any] = [
+                                "firstName": contact.givenName,
+                                "lastName": contact.familyName,
+                                "phoneNumber": userPhoneNumber,
+                                "userID": matchedUserId // Add the userID of the matched user
+                            ]
+
+                            // Create a unique ID based on the contact's first name, last name, and group
+                            let uniqueID = "\(contact.givenName)-\(contact.familyName)-\(selectedGroup)"
+
+                            db.collection("users").document(userId).collection("contacts").document(selectedGroup).collection(selectedGroup).document(uniqueID).setData(contactData)
+                        } else {
+                            // No user with this phone number exists
+                            let contactData: [String: Any] = [
+                                "firstName": contact.givenName,
+                                "lastName": contact.familyName,
+                                "phoneNumber": "Not a user",
+                                "userID": "N/A"
+                            ]
+
+                            // Create a unique ID based on the contact's first name, last name, and group
+                            let uniqueID = "\(contact.givenName)-\(contact.familyName)-\(selectedGroup)"
+
+                            db.collection("users").document(userId).collection("contacts").document(selectedGroup).collection(selectedGroup).document(uniqueID).setData(contactData)
+                        }
+                    }
+                }
             }
         }
     }
 }
 
-extension ContactsView.GroupType {
-    var title: String {
-        switch self {
-        case .friends:
-            return "Friends"
-        case .family:
-            return "Family"
-        case .personal:
-            return "Personal"
-        }
+struct ContactsView_Previews: PreviewProvider {
+    static var previews: some View {
+        ContactsView()
     }
 }

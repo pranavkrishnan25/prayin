@@ -49,7 +49,32 @@ class EventViewModel: ObservableObject {
         self.userId = userId
         fetchData()
     }
-
+//    @Published var events: [Event] = []
+//    private var db = Firestore.firestore()
+//    var userId: String {
+//        didSet {
+//            if !userId.isEmpty {
+//                fetchData()
+//            }
+//        }
+//    }
+//
+//    init(userId: String = "") {
+//        self.userId = userId
+//        if !userId.isEmpty {
+//            fetchData()
+//        }
+//        setupAuthListener()
+//    }
+//
+//    private func setupAuthListener() {
+//        Auth.auth().addStateDidChangeListener { [weak self] (auth, user) in
+//            if let user = user {
+//                self?.userId = user.uid
+//            }
+//        }
+//    }
+//above this is added
     func fetchData(completion: ((Result<Void, Error>) -> Void)? = nil) {
         let userRef = db.collection("users").document(userId)
         userRef.collection("events").getDocuments { (querySnapshot, error) in

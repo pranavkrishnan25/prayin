@@ -162,7 +162,7 @@ struct SignUpView: View {
                         .background(RoundedRectangle(cornerRadius:6).stroke(self.borderColor,lineWidth:2))
                         .padding(.top, 0)
 
-                    // Phone Number TextField
+//                     Phone Number TextField
 //                    TextField("Phone Number", text: $phoneNumber)
 //                        .keyboardType(.numberPad)
 //                        .padding()

@@ -1,46 +1,40 @@
-//
-//  ImagePickerView.swift
-//  notbs
-//
-//  Created by Pranav Krishnan on 7/16/23.
-//
-
 import SwiftUI
-
-import SwiftUI
-import UIKit
 
 struct ImagePickerView: UIViewControllerRepresentable {
     @Binding var selectedImage: UIImage?
-    @Environment(\.presentationMode) var isPresented
     var sourceType: UIImagePickerController.SourceType
     
-    func makeUIViewController(context: Context) -> UIImagePickerController {
+    func makeUIViewController(context: UIViewControllerRepresentableContext<ImagePickerView>) -> UIImagePickerController {
         let imagePicker = UIImagePickerController()
-        imagePicker.sourceType = self.sourceType
         imagePicker.delegate = context.coordinator
+        imagePicker.sourceType = sourceType
         return imagePicker
     }
     
-    func updateUIViewController(_ uiViewController: UIImagePickerController, context: Context) {}
+    func updateUIViewController(_ uiViewController: UIImagePickerController, context: UIViewControllerRepresentableContext<ImagePickerView>) {
+    }
     
     func makeCoordinator() -> Coordinator {
-        Coordinator(picker: self)
+        Coordinator(self)
     }
     
     class Coordinator: NSObject, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
-        let picker: ImagePickerView
-        
-        init(picker: ImagePickerView) {
-            self.picker = picker
+        var parent: ImagePickerView
+
+        init(_ parent: ImagePickerView) {
+            self.parent = parent
         }
         
         func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
             if let image = info[.originalImage] as? UIImage {
-                self.picker.selectedImage = image
+                parent.selectedImage = image
             }
-            
-            self.picker.isPresented.wrappedValue.dismiss()
+            picker.dismiss(animated: true)
+        }
+        
+        func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+            picker.dismiss(animated: true)
         }
     }
 }
+

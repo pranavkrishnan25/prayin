@@ -208,7 +208,7 @@ struct ContentView: View {
                     case .events:
                         EventsListView(eventVM: eventVM)
                     case .human:
-                        TestView()
+                        ImageGalleryView()
                     case .contacts:  // This is the new ContactsView case.
                         ContactsView()
                     }

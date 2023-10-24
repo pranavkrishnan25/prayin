@@ -56,44 +56,13 @@ struct HomeScreenView: View {
         case "Family":
             Screen2View(homeVM: homeVM)
         case "Friends":
-            Screen3View()
+            Screen3View(events: homeVM.feedOutEvents)
         default:
             EmptyView()
         }
     }
 }
 
-//struct Screen1View: View {
-//    @ObservedObject var homeVM: HomeScreenViewModel
-//
-//    var body: some View {
-//        ScrollView {
-//            LazyVGrid(columns: [GridItem(.flexible())]) {
-//                ForEach(homeVM.events, id: \.date) { event in
-//                    TileView(title: event.type, color: Color.blue)
-//                        .frame(maxWidth: .infinity)
-//                }
-//            }
-//            .padding()
-//        }
-//    }
-//}
-
-//struct Screen2View: View {
-//    @ObservedObject var homeVM: HomeScreenViewModel
-//
-//    var body: some View {
-//        ScrollView {
-//            LazyVGrid(columns: [GridItem(.flexible())], spacing: 10) {
-//                ForEach(homeVM.events, id: \.date) { event in
-//                    TileView(title: event.type, color: Color.green)
-//                        .frame(maxWidth: .infinity)
-//                }
-//            }
-//            .padding()
-//        }
-//    }
-//}
 struct Screen1View: View {
     @ObservedObject var homeVM: HomeScreenViewModel
 
@@ -101,7 +70,8 @@ struct Screen1View: View {
         ScrollView {
             LazyVGrid(columns: [GridItem(.flexible())]) {
                 ForEach(homeVM.feedInEvents, id: \.date) { event in
-                    TileView(title: event.type, color: Color.blue)
+                    TileView(title: event.type, color: Color.blue, imageURL: event.imageURL)
+
                         .frame(maxWidth: .infinity)
                 }
             }
@@ -117,7 +87,8 @@ struct Screen2View: View {
         ScrollView {
             LazyVGrid(columns: [GridItem(.flexible())], spacing: 10) {
                 ForEach(homeVM.feedOutEvents, id: \.date) { event in
-                    TileView(title: event.type, color: Color.green)
+                    TileView(title: event.type, color: Color.green, imageURL: event.imageURL)
+
                         .frame(maxWidth: .infinity)
                 }
             }
@@ -127,11 +98,13 @@ struct Screen2View: View {
 }
 
 struct Screen3View: View {
+    var events: [Event]  // <--- Add this property
+
     var body: some View {
         ScrollView {
             LazyVGrid(columns: [GridItem(.flexible())], spacing: 10) {
-                ForEach(0..<20) { index in
-                    TileView(title: "Tile \(index + 1)", color: Color.orange)
+                ForEach(events, id: \.date) { event in  // <--- Use this array in the loop
+                    TileView(title: event.type, color: Color.orange, imageURL: event.imageURL)
                         .frame(maxWidth: .infinity)
                 }
             }
@@ -140,22 +113,67 @@ struct Screen3View: View {
     }
 }
 
+
+//struct TileView: View {
+//    let title: String
+//    let color: Color
+//
+//    var body: some View {
+//        HStack {
+//            Text(title)
+//                .font(.title)
+//                .foregroundColor(.white)
+//                .padding()
+//                .frame(maxWidth: .infinity) // Occupy the entire horizontal space
+//        }
+//        .background(color)
+//        .cornerRadius(10)
+//    }
+//}
+import SwiftUI
+import FirebaseStorage
+
 struct TileView: View {
     let title: String
     let color: Color
+    let imageURL: String?
     
+    @State private var uiImage: UIImage? = nil
+
     var body: some View {
         HStack {
+            if let img = uiImage {
+                Image(uiImage: img)
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .frame(width: 50, height: 50)
+                    .clipShape(Circle())
+            }
             Text(title)
                 .font(.title)
                 .foregroundColor(.white)
                 .padding()
-                .frame(maxWidth: .infinity) // Occupy the entire horizontal space
+                .frame(maxWidth: .infinity)
         }
         .background(color)
         .cornerRadius(10)
+        .onAppear(perform: loadImageFromFirebase)
+    }
+
+    func loadImageFromFirebase() {
+        guard let imageURL = imageURL else { return }
+
+        let storageRef = Storage.storage().reference(forURL: imageURL)
+        storageRef.getData(maxSize: Int64(1 * 1024 * 1024)) { data, error in  // max size is 1 MB
+            if let error = error {
+                print("Error fetching image: \(error.localizedDescription)")
+            } else if let data = data {
+                uiImage = UIImage(data: data)
+            }
+        }
     }
 }
+
 
 struct HomeScreenView_Previews: PreviewProvider {
     static var previews: some View {

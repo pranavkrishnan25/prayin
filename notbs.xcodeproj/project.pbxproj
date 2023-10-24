@@ -66,6 +66,7 @@
 		41846DE12A95248C002536C0 /* ContactsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41846DE02A95248C002536C0 /* ContactsView.swift */; };
 		418C52782AB9F73D0066B22D /* ContactsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 418C52772AB9F73D0066B22D /* ContactsViewModel.swift */; };
 		4193D5D62ABD00A000C4C288 /* TestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4193D5D52ABD00A000C4C288 /* TestView.swift */; };
+		41D60CFC2AE82D8000393F8C /* ImageGalleryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41D60CFB2AE82D8000393F8C /* ImageGalleryView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -118,6 +119,9 @@
 		41846DE02A95248C002536C0 /* ContactsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsView.swift; sourceTree = "<group>"; };
 		418C52772AB9F73D0066B22D /* ContactsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsViewModel.swift; sourceTree = "<group>"; };
 		4193D5D52ABD00A000C4C288 /* TestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestView.swift; sourceTree = "<group>"; };
+		41D60CFB2AE82D8000393F8C /* ImageGalleryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageGalleryView.swift; sourceTree = "<group>"; };
+		41D60CFE2AE82E4E00393F8C /* SDWebImage-SDWebImageSwiftUI-ea47977 */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = "SDWebImage-SDWebImageSwiftUI-ea47977"; path = "../../Downloads/SDWebImage-SDWebImageSwiftUI-ea47977"; sourceTree = "<group>"; };
+		41D60CFF2AE82E7300393F8C /* SDWebImage-SDWebImageSwiftUI-ea47977 */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = "SDWebImage-SDWebImageSwiftUI-ea47977"; path = "../../Downloads/SDWebImage-SDWebImageSwiftUI-ea47977"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -176,6 +180,7 @@
 		410F17992A4CCD4900AF965C = {
 			isa = PBXGroup;
 			children = (
+				41D60CFD2AE82E4E00393F8C /* Packages */,
 				410F17A42A4CCD4900AF965C /* notbs */,
 				410F17B52A4CCD4B00AF965C /* notbsTests */,
 				410F17BF2A4CCD4B00AF965C /* notbsUITests */,
@@ -205,6 +210,7 @@
 				41846DE02A95248C002536C0 /* ContactsView.swift */,
 				4193D5D52ABD00A000C4C288 /* TestView.swift */,
 				418C52772AB9F73D0066B22D /* ContactsViewModel.swift */,
+				41D60CFB2AE82D8000393F8C /* ImageGalleryView.swift */,
 				417053DC2A990298009F4E36 /* cosmos-test.swift */,
 				417053DE2A9902A1009F4E36 /* CosmosDBService.swift */,
 				410F17D52A4CD63F00AF965C /* HomeScreenView.swift */,
@@ -249,6 +255,15 @@
 				410F17C22A4CCD4B00AF965C /* notbsUITestsLaunchTests.swift */,
 			);
 			path = notbsUITests;
+			sourceTree = "<group>";
+		};
+		41D60CFD2AE82E4E00393F8C /* Packages */ = {
+			isa = PBXGroup;
+			children = (
+				41D60CFE2AE82E4E00393F8C /* SDWebImage-SDWebImageSwiftUI-ea47977 */,
+				41D60CFF2AE82E7300393F8C /* SDWebImage-SDWebImageSwiftUI-ea47977 */,
+			);
+			name = Packages;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -436,6 +451,7 @@
 				412EDC8B2A6477A5006DC907 /* ImagePickerView.swift in Sources */,
 				411C4D1D2A91685C006CA956 /* EventListView.swift in Sources */,
 				412EDC852A64629E006DC907 /* PersonalLedgerView.swift in Sources */,
+				41D60CFC2AE82D8000393F8C /* ImageGalleryView.swift in Sources */,
 				417053DF2A9902A1009F4E36 /* CosmosDBService.swift in Sources */,
 				410F17D62A4CD63F00AF965C /* HomeScreenView.swift in Sources */,
 				41846DE12A95248C002536C0 /* ContactsView.swift in Sources */,

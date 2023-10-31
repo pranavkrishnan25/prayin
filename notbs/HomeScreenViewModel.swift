@@ -29,12 +29,13 @@ class HomeScreenViewModel: ObservableObject {
             
             self.feedInEvents = querySnapshot?.documents.compactMap({ document in
                 let data = document.data()
+                print("Document data: \(data)")
                 let group = data["group"] as? String ?? ""
                 let type = data["type"] as? String ?? ""
                 let timestamp = data["date"] as? Timestamp
                 let date = timestamp?.dateValue() ?? Date()
 //                return Event(group: group, type: type, date: date)
-                let imageURL = data["imageURL"] as? String
+                let imageURL = data["imageUrl"] as? String
                 return Event(group: group, type: type, date: date, imageURL: imageURL)
             }) ?? []
         }
@@ -55,7 +56,7 @@ class HomeScreenViewModel: ObservableObject {
                 let timestamp = data["date"] as? Timestamp
                 let date = timestamp?.dateValue() ?? Date()
 //                return Event(group: group, type: type, date: date)
-                let imageURL = data["imageURL"] as? String
+                let imageURL = data["imageUrl"] as? String
                 return Event(group: group, type: type, date: date, imageURL: imageURL)
             }) ?? []
         }

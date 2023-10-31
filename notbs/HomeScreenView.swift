@@ -1,4 +1,7 @@
 import SwiftUI
+import Kingfisher
+import Firebase
+import FirebaseStorage
 
 struct HomeScreenView: View {
     let screens: [String] = ["Me", "Family", "Friends"]
@@ -117,63 +120,77 @@ struct Screen3View: View {
 //struct TileView: View {
 //    let title: String
 //    let color: Color
+//    let imageURL: String?
 //
 //    var body: some View {
+//
 //        HStack {
+//            Group {
+//                if let imageURL = imageURL, let url = URL(string: imageURL) {
+//                    KFImage(url)
+//                        .resizable()
+//                        .placeholder {
+//                            Image(systemName: "photo")
+//                                .resizable()
+//                                .frame(width: 50, height: 50)
+//                                .foregroundColor(.gray)
+//                        }
+//                        .frame(width: 50, height: 50)
+//                        .clipShape(Circle())
+//                } else {
+//                    Image(systemName: "xmark.circle")
+//                        .resizable()
+//                        .frame(width: 50, height: 50)
+//                        .foregroundColor(.gray)
+//                }
+//            }
+//
 //            Text(title)
 //                .font(.title)
 //                .foregroundColor(.white)
 //                .padding()
-//                .frame(maxWidth: .infinity) // Occupy the entire horizontal space
+//                .frame(maxWidth: .infinity)
 //        }
 //        .background(color)
 //        .cornerRadius(10)
+//        .onAppear {
+//                   print("Image URL: \(self.imageURL ?? "None")")
+//               }
 //    }
 //}
-import SwiftUI
-import FirebaseStorage
-
 struct TileView: View {
     let title: String
     let color: Color
     let imageURL: String?
-    
-    @State private var uiImage: UIImage? = nil
 
     var body: some View {
-        HStack {
-            if let img = uiImage {
-                Image(uiImage: img)
+        VStack {
+            // Image
+            if let imageURL = URL(string: self.imageURL ?? "") {
+                KFImage(imageURL)
                     .resizable()
-                    .aspectRatio(contentMode: .fit)
-                    .frame(width: 50, height: 50)
-                    .clipShape(Circle())
+                    .placeholder {
+                        Image(systemName: "photo")
+                            .resizable()
+                            .frame(width: 300, height: 300)
+                            .foregroundColor(.gray)
+                    }
+                    .aspectRatio(contentMode: .fill)
+                    .frame(width: 300, height: 300)
             }
+
+            // Title (User Name / Caption)
             Text(title)
-                .font(.title)
-                .foregroundColor(.white)
+                .font(.headline)
                 .padding()
-                .frame(maxWidth: .infinity)
+                .frame(maxWidth: .infinity, alignment: .leading)
         }
         .background(color)
         .cornerRadius(10)
-        .onAppear(perform: loadImageFromFirebase)
-    }
-
-    func loadImageFromFirebase() {
-        guard let imageURL = imageURL else { return }
-
-        let storageRef = Storage.storage().reference(forURL: imageURL)
-        storageRef.getData(maxSize: Int64(1 * 1024 * 1024)) { data, error in  // max size is 1 MB
-            if let error = error {
-                print("Error fetching image: \(error.localizedDescription)")
-            } else if let data = data {
-                uiImage = UIImage(data: data)
-            }
-        }
+        .shadow(color: .gray, radius: 2, x: 0, y: 2)
+        .padding()
     }
 }
-
 
 struct HomeScreenView_Previews: PreviewProvider {
     static var previews: some View {

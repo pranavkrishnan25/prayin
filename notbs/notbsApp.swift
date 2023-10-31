@@ -1,26 +1,4 @@
 ////
-////  notbsApp.swift
-////  notbs
-////
-////  Created by Pranav Krishnan on 6/28/23.
-////
-//
-//import SwiftUI
-//import FirebaseCore
-//
-//
-//@main
-//struct notbsApp: App {
-//    init(){
-//        FirebaseApp.configure()
-//    }
-//    var body: some Scene {
-//        WindowGroup {
-//            LaunchScreenView()
-//        }
-//    }
-//}
-
 
 import SwiftUI
 import FirebaseCore

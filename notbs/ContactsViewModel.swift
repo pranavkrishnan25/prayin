@@ -36,47 +36,7 @@ class ContactsViewModel: ObservableObject {
         }
     }
     
-//    private func fetchGroup(_ group: String, completion: @escaping (Result<[Person], Error>) -> Void) {
-//        let groupRef = db.collection("users").document(userId).collection("contacts").document(group).collection(group)
-//        groupRef.getDocuments { (querySnapshot, error) in
-//            if let error = error {
-//                completion(.failure(error))
-//                return
-//            }
-//
-//            let persons: [Person] = querySnapshot?.documents.compactMap({ document in
-//                let data = document.data()
-//                guard let firstName = data["firstName"] as? String,
-//                      let lastName = data["lastName"] as? String else {
-//                    return nil
-//                }
-//                return Person(first: firstName, last: lastName)
-//            }) ?? []
-//
-//            completion(.success(persons))
-//        }
-//    }
-//    private func fetchGroup(_ group: String, completion: @escaping (Result<[Person], Error>) -> Void) {
-//        let groupRef = db.collection("users").document(userId).collection("contacts").document(group).collection(group)
-//        groupRef.getDocuments { (querySnapshot, error) in
-//            if let error = error {
-//                completion(.failure(error))
-//                return
-//            }
-//
-//            let persons: [Person] = querySnapshot?.documents.compactMap({ document in
-//                let data = document.data()
-//                guard let firstName = data["firstName"] as? String,
-//                      let lastName = data["lastName"] as? String,
-//                      let phoneNumber = data["phoneNumber"] as? String else {
-//                    return nil
-//                }
-//                return Person(first: firstName, last: lastName, phoneNumber: phoneNumber)
-//            }) ?? []
-//
-//            completion(.success(persons))
-//        }
-//    }
+
     private func fetchGroup(_ group: String, completion: @escaping (Result<[Person], Error>) -> Void) {
         let groupRef = db.collection("users").document(userId).collection("contacts").document(group).collection(group)
         groupRef.getDocuments { (querySnapshot, error) in

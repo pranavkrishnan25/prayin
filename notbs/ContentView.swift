@@ -22,12 +22,12 @@ struct ContentView: View {
                         HomeScreenView(homeVM: HomeScreenViewModel(userId: currentUserId))
                     case .plus:
                         PlusScreenView()
-                    case .events:
-                        EventsListView(eventVM: eventVM)
+//                    case .events:
+//                        EventsListView(eventVM: eventVM)
                     case .human:
                         HumanScreenView()
-                    case .contacts:  // This is the new ContactsView case.
-                        ContactsView()
+//                    case .contacts:  // This is the new ContactsView case.
+//                        ContactsView()
                     }
                 } else {
                     // Handle the case where no user is logged in, perhaps show a login screen or an error message
@@ -39,13 +39,14 @@ struct ContentView: View {
             Spacer(minLength: 0)
 
             HStack {
+                Spacer(minLength: 1)
                 TabButton(
                     icon: "house",
                     activeIcon: "house.fill",
                     selectedTab: $selectedTab,
                     forTab: .home
                 )
-                Spacer(minLength: 15)
+                Spacer(minLength: 30)
                 
                 TabButton(
                     icon: "plus.circle",
@@ -53,15 +54,15 @@ struct ContentView: View {
                     selectedTab: $selectedTab,
                     forTab: .plus
                 )
-                Spacer(minLength: 15)
+                Spacer(minLength: 30)
 
-                TabButton(
-                    icon: "list.bullet.rectangle",
-                    activeIcon: "list.bullet.below.rectangle",
-                    selectedTab: $selectedTab,
-                    forTab: .events
-                )
-                Spacer(minLength: 15)
+//                TabButton(
+//                    icon: "list.bullet.rectangle",
+//                    activeIcon: "list.bullet.below.rectangle",
+//                    selectedTab: $selectedTab,
+//                    forTab: .events
+//                )
+//                Spacer(minLength: 15)
                 
                 TabButton(
                     icon: "person",
@@ -69,14 +70,14 @@ struct ContentView: View {
                     selectedTab: $selectedTab,
                     forTab: .human
                 )
-                Spacer(minLength: 15)
+                Spacer(minLength: 1)
 
-                TabButton(
-                    icon: "person.3",
-                    activeIcon: "person.3.fill",
-                    selectedTab: $selectedTab,
-                    forTab: .contacts
-                )
+//                TabButton(
+//                    icon: "person.3",
+//                    activeIcon: "person.3.fill",
+//                    selectedTab: $selectedTab,
+//                    forTab: .contacts
+//                )
             }
             .padding(.horizontal, 10)
             .padding(.bottom, 20)
@@ -90,9 +91,9 @@ struct ContentView: View {
     enum Tab {
         case home
         case plus
-        case events
+//        case events
         case human
-        case contacts  // Add this for the ContactsView
+//        case contacts  // Add this for the ContactsView
     }
 
     struct TabButton: View {

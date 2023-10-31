@@ -28,7 +28,8 @@ class EventViewModel: ObservableObject {
                 let date = timestamp?.dateValue() ?? Date()
                 // Inside fetchData():
                 let imageURL = data["imageURL"] as? String
-                return Event(group: group, type: type, date: date, imageURL: imageURL)
+                let notes = data["notes"] as? String
+                return Event(group: group, type: type, date: date, imageURL: imageURL, notes: notes)
 
 //                return Event(group: group, type: type, date: date)
             }) ?? []
@@ -47,6 +48,7 @@ struct Event {
     var group: String
     var type: String
     var date: Date
-    var imageURL: String?  // Add this line for the imageURL
+    var imageURL: String?
+    var notes: String?// Add this line for the imageURL
 }
 

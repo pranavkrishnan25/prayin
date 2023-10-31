@@ -32,6 +32,8 @@ struct PlusScreenView: View {
     @ObservedObject var viewModel = ContactsViewModel(userId: Auth.auth().currentUser?.uid ?? "mockUserId")
 
     @State private var eventName = ""
+    @State private var eventNotes = ""
+
 
 
     var body: some View {
@@ -64,6 +66,12 @@ struct PlusScreenView: View {
                             .labelsHidden()
                     }
                     
+                    TextField("Enter event notes", text: $eventNotes)
+                        .font(.title2)
+                        .padding(.all, 10)
+                        .background(Color.gray.opacity(0.1))
+                        .cornerRadius(10)
+
                     // Type Button
                     OptionButtonView(viewModel: viewModel, selectedPersons: $selectedPersons, showMenu: $showTypeMenu, selectedOption: $selectedType, options: typeOptions, label: "Type")
                     
@@ -76,21 +84,7 @@ struct PlusScreenView: View {
                     
                     // Picture Capture
                     HStack {
-//                        Text("Picture")
-//                            .font(.title2)
-////                        Spacer()
-//                        Button(action: {
-//                            isCameraPresented = true
-//                        }) {
-//                            Image(systemName: "camera")
-//                                .font(.title)
-//                                .padding(.all, 10)
-//                                .background(Color.blue.opacity(0.6))
-//                                .cornerRadius(10)
-//                        }
-//                        .sheet(isPresented: $isCameraPresented) {
-//                            ImagePickerView(selectedImage: $selectedImage, sourceType: .camera)
-//                        }
+
                         Text("Picture")
                             .font(.title2)
                         Button(action: {
@@ -163,71 +157,6 @@ struct PlusScreenView: View {
     }
 
 
-
-//    func sendButtonTapped() {
-//        // Cosmos DB
-//        guard let currentUserId = Auth.auth().currentUser?.uid else {
-//            print("No user is logged in")
-//            return
-//        }
-//        // Firebase Firestore
-//        let db = Firestore.firestore()
-//
-//        // Data to save:
-//        var firebaseEventData: [String: Any] = [
-//            "group": selectedGroup,
-//            "type": selectedType,
-//            "date": Timestamp(date: selectedDate),
-//            "userId": currentUserId
-//        ]
-//
-//        var contactsArray: [[String: Any]] = []
-//
-//        for person in selectedPersons {
-//            let contactData: [String: Any] = [
-//                "firstName": person.first,
-//                "lastName": person.last,
-//                "phoneNumber": person.phoneNumber,
-//                "userID": person.userID
-//            ]
-//            contactsArray.append(contactData)
-//        }
-//
-//        firebaseEventData["contacts"] = contactsArray
-//
-//        // Save event to the user's specific events sub-collection
-//        let userRef = db.collection("users").document(currentUserId)
-//        userRef.collection("events").addDocument(data: firebaseEventData) { error in
-//            if let error = error {
-//                print("Firebase Error adding document: \(error)")
-//            } else {
-//                print("Firebase Document successfully added!")
-//            }
-//        }
-//
-//
-//        userRef.collection("feed_in").addDocument(data: firebaseEventData) { error in
-//                if let error = error {
-//                    print("Firebase Error adding document to feed_in: \(error)")
-//                } else {
-//                    print("Firebase Document successfully added to feed_in!")
-//
-//                    for contact in contactsArray {
-//                        if let contactUserID = contact["userID"] as? String, !contactUserID.isEmpty, contactUserID != "N/A" {
-//                            let contactRef = db.collection("users").document(contactUserID)
-//                            contactRef.collection("feed_out").addDocument(data: firebaseEventData) { error in
-//                                if let error = error {
-//                                    print("Firebase Error adding document to feed_out of user \(contactUserID): \(error)")
-//                                } else {
-//                                    print("Firebase Document successfully added to feed_out of user \(contactUserID)!")
-//                                }
-//                            }
-//                        }
-//                    }
-//
-//                }
-//            }
-//    }
     func sendButtonTapped() {
         // Check for a logged-in user
         guard let currentUserId = Auth.auth().currentUser?.uid else {
@@ -248,7 +177,8 @@ struct PlusScreenView: View {
                     "type": selectedType,
                     "date": Timestamp(date: selectedDate),
                     "userId": currentUserId,
-                    "imageUrl": imageUrl
+                    "imageUrl": imageUrl,
+                    "notes": eventNotes
                 ]
 
                 self.saveEventToFirestore(firebaseEventData)
@@ -259,7 +189,8 @@ struct PlusScreenView: View {
                 "group": selectedGroup,
                 "type": selectedType,
                 "date": Timestamp(date: selectedDate),
-                "userId": currentUserId
+                "userId": currentUserId,
+                "notes": eventNotes
             ]
             
             self.saveEventToFirestore(firebaseEventData)

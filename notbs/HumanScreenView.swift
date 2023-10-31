@@ -3,114 +3,6 @@ import SwiftUI
 import FirebaseAuth
 
 
-//struct HumanScreenView: View {
-//    @State private var selectedGraph = 0
-//    @State private var showingQRCode = false
-//
-//    var body: some View {
-//        NavigationView {
-//            VStack {
-//                HStack {
-//                    Image(systemName: "person.circle")
-//                        .resizable()
-//                        .frame(width: 50, height: 50)
-//                        .padding()
-//
-//                    Button(action: {
-//                        self.showingQRCode = true
-//                    }) {
-//                        VStack(alignment: .leading) {
-//                            Text("Pranav Krishnan")
-//                                .font(.title)
-//                                .foregroundColor(.black)
-//                        }
-//                    }
-//                    .sheet(isPresented: $showingQRCode) {
-//                        QRCodeView()
-//                    }
-//
-//                    Spacer()
-//
-//                    NavigationLink(destination: SettingsView()) {
-//                        Image(systemName: "gearshape.fill")
-//                            .foregroundColor(.blue)
-//                            .font(.title)
-//                            .padding()
-//                    }
-//                }
-//                .background(RoundedRectangle(cornerRadius: 20)
-//                                .fill(Color.white.opacity(0.7)))
-//                .padding()
-//
-//                if let userId = Auth.auth().currentUser?.uid {
-//                    let viewModel = EventViewModel(userId: userId)
-//                    NavigationLink(destination: PersonalLedgerView().environmentObject(viewModel)) {
-//                        VStack {
-//                            Image(systemName: "book.fill")
-//                                .font(.largeTitle)
-//                                .foregroundColor(.blue)
-//                            Text("Personal Ledger")
-//                                .foregroundColor(.black)
-//                        }
-//                        .frame(minWidth: 0, maxWidth: .infinity)
-//                        .padding()
-//                        .background(RoundedRectangle(cornerRadius: 20).fill(Color.gray.opacity(0.2)))
-//                    }
-//                }
-//
-//                NavigationLink(destination: MedicalVisitsView()) {
-//                    VStack {
-//                        Image(systemName: "heart.text.square")
-//                            .font(.largeTitle)
-//                            .foregroundColor(.blue)
-//                        Text("Medical Visits")
-//                            .foregroundColor(.black)
-//                    }
-//                    .frame(minWidth: 0, maxWidth: .infinity)
-//                    .padding()
-//                    .background(RoundedRectangle(cornerRadius: 20).fill(Color.gray.opacity(0.2)))
-//                }
-//
-//                NavigationLink(destination: MedicineCabinetView()) {
-//                    VStack {
-//                        Image(systemName: "pills")
-//                            .font(.largeTitle)
-//                            .foregroundColor(.blue)
-//                        Text("Medicine Cabinet")
-//                            .foregroundColor(.black)
-//                    }
-//                    .frame(minWidth: 0, maxWidth: .infinity)
-//                    .padding()
-//                    .background(RoundedRectangle(cornerRadius: 20).fill(Color.gray.opacity(0.2)))
-//                }
-//                .padding()
-//
-//                Text("Activity")
-//                    .font(.title2)
-//                    .fontWeight(.bold)
-//                    .padding(.top, 10)
-//
-//                Picker("", selection: $selectedGraph) {
-//                    Text("Glucose Level").tag(0)
-//                    Text("Blood Oxygen").tag(1)
-//                }
-//                .pickerStyle(SegmentedPickerStyle())
-//                .padding(.horizontal)
-//
-//                if selectedGraph == 0 {
-//                    GraphView(color: .blue)
-//                } else {
-//                    GraphView(color: .red)
-//                }
-//
-//                Spacer()
-//            }
-//            .navigationBarTitle("")
-//            .navigationBarHidden(true)
-//        }
-//    }
-//}
-
 struct QRCodeView: View {
     var body: some View {
         VStack {
@@ -196,9 +88,10 @@ struct HumanScreenView: View {
                 .padding()
 
                 VStack {
-//                    NavigationCard(systemImageName: "book.fill", title: "Personal Ledger", destination: PersonalLedgerView())
-//                    NavigationCard(systemImageName: "heart.text.square", title: "Medical Visits", destination: MedicalVisitsView())
                     NavigationCard(systemImageName: "pills", title: "Medicine Cabinet", destination: MedicineCabinetView())
+                    NavigationCard(systemImageName: "book.fill", title: "Manage Contacts", destination: ContactsView())
+//                    NavigationCard(systemImageName: "heart.text.square", title: "Medical Visits", destination: MedicalVisitsView())
+
                 }
                 .padding(.horizontal)
                 Spacer()

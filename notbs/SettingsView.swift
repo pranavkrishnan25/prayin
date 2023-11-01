@@ -158,22 +158,85 @@ import SwiftUI
 //    }
 //}
 
+//import SwiftUI
+//
+//struct SettingsView: View {
+//    @State private var name: String = UserDefaults.standard.string(forKey: "userName") ?? ""
+//    @State private var age: String = UserDefaults.standard.string(forKey: "userAge") ?? ""
+//    @State private var weight: String = UserDefaults.standard.string(forKey: "userWeight") ?? ""
+//    @State private var birthdate: Date = UserDefaults.standard.object(forKey: "userBirthdate") as? Date ?? Date()
+//
+//    var body: some View {
+//        VStack {
+//            Form {
+//                Section(header: Text("Personal Information")) {
+//                    TextField("Name", text: $name)
+//                    TextField("Age", text: $age)
+//                    TextField("Weight", text: $weight)
+//                    DatePicker("Birthdate", selection: $birthdate, displayedComponents: .date)
+//                }
+//
+//                Section(header: Text("Privacy Settings")) {
+//                    Toggle(isOn: .constant(true)) {
+//                        Text("Enable biometrics")
+//                    }
+//
+//                    Toggle(isOn: .constant(false)) {
+//                        Text("Use location")
+//                    }
+//                }
+//            }
+//
+//            Button(action: saveData) {
+//                Text("Submit")
+//                    .foregroundColor(.white)
+//                    .padding(.horizontal, 40)
+//                    .padding(.vertical, 10)
+//                    .background(Color.blue)
+//                    .cornerRadius(8)
+//            }
+//            .padding(.top, 20)
+//        }
+//        .navigationTitle("Settings")
+//    }
+//
+//    func saveData() {
+//        UserDefaults.standard.set(name, forKey: "userName")
+//        UserDefaults.standard.set(age, forKey: "userAge")
+//        UserDefaults.standard.set(weight, forKey: "userWeight")
+//        UserDefaults.standard.set(birthdate, forKey: "userBirthdate")
+//    }
+//}
+//
+//extension Binding {
+//    func onChange(_ handler: @escaping (Value) -> Void) -> Binding<Value> {
+//        return Binding(
+//            get: { self.wrappedValue },
+//            set: { newValue in
+//                self.wrappedValue = newValue
+//                handler(newValue)
+//            }
+//        )
+//    }
+//}
+
 import SwiftUI
 
 struct SettingsView: View {
-    @State private var name: String = UserDefaults.standard.string(forKey: "userName") ?? ""
-    @State private var age: String = UserDefaults.standard.string(forKey: "userAge") ?? ""
-    @State private var weight: String = UserDefaults.standard.string(forKey: "userWeight") ?? ""
-    @State private var birthdate: Date = UserDefaults.standard.object(forKey: "userBirthdate") as? Date ?? Date()
+    @State private var name: String = ""
+    @State private var age: String = ""
+    @State private var weight: String = ""
+    @State private var birthdate: Date = Date()
 
     var body: some View {
         VStack {
             Form {
                 Section(header: Text("Personal Information")) {
-                    TextField("Name", text: $name)
-                    TextField("Age", text: $age)
-                    TextField("Weight", text: $weight)
-                    DatePicker("Birthdate", selection: $birthdate, displayedComponents: .date)
+                    TextField("Name", text: $name.onChange { _ in saveData() })
+                    TextField("Age", text: $age.onChange { _ in saveData() })
+                    TextField("Weight", text: $weight.onChange { _ in saveData() })
+                    DatePicker("Birthdate", selection: $birthdate.onChange { _ in saveData() }, displayedComponents: .date)
+
                 }
 
                 Section(header: Text("Privacy Settings")) {
@@ -197,7 +260,15 @@ struct SettingsView: View {
             }
             .padding(.top, 20)
         }
+        .onAppear(perform: loadData)  // Load the data when the view appears
         .navigationTitle("Settings")
+    }
+    
+    func loadData() {
+        name = UserDefaults.standard.string(forKey: "userName") ?? ""
+        age = UserDefaults.standard.string(forKey: "userAge") ?? ""
+        weight = UserDefaults.standard.string(forKey: "userWeight") ?? ""
+        birthdate = UserDefaults.standard.object(forKey: "userBirthdate") as? Date ?? Date()
     }
     
     func saveData() {
@@ -219,3 +290,4 @@ extension Binding {
         )
     }
 }
+

@@ -167,9 +167,9 @@ struct TileView: View {
                     Spacer() // Push the content to the center
                     VStack(alignment: .center, spacing: 5) { // Adjust the spacing value as per your design
                         Text("\(title) Update")
-                            .font(.headline)
+                            .font(.custom("Cochin", size: 20))
                         Text(elapsedTime)
-                            .font(.subheadline)
+                            .font(.custom("Cochin", size: 15))
                             .foregroundColor(.black)
                     }
                     Spacer() // Push the content to the center
@@ -201,11 +201,12 @@ struct TileView: View {
             .sheet(isPresented: $isShowingNotes) {
                 VStack {
                     Text("\(title) Update")
-                        .font(.headline)
+                        .font(.custom("Cochin", size: 30))
                     Text(elapsedTime)
-                        .font(.subheadline)
+                        .font(.custom("Cochin", size: 20))
                         .foregroundColor(.black)
                     Text(notes ?? "No notes available.")
+                        .font(.custom("Cochin", size: 20))
                         .padding()
                 }
             }
